@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Invoice Report -->
+    <record id="action_export_list_report_invoice_py3o" model="ir.actions.report">
+        <field name="name">Export List For Dispatch </field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">account.move</field>
+        <field name="report_name">orion_export_report_list.export_dispatch_list</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_export_report_list</field>
+        <field name="py3o_template_fallback">reports/export_dispatch_list.odt</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

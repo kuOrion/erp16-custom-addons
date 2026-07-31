@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <record id="view_orion_order" model="ir.ui.view">-->
+<!--            <field name="name">view.orion_order.form</field>-->
+<!--            <field name="model">sale.order</field>-->
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='order_line']//form//field[@name='name']" position="after">-->
+<!--                    <page>-->
+<!--                        <group>-->
+<!--                            <field name="product_spec"/>-->
+<!--                            <field name="tagno"/>-->
+<!--                            <field name="cgst" invisible="1"/>-->
+<!--                            <field name="igst" invisible="1"/>-->
+<!--                            <field name="sgst" invisible="1"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="schno"/>-->
+<!--                                <field name="scheduleyn"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="devyn"/>-->
+<!--                                <field name="accessory_yn"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+
+<!--                        <page string="Deviation Info" attrs="{'invisible':[('devyn','=',False)]}">-->
+<!--                            <field colspan="4" name="deviation_line" nolabel="1" widget="one2many_list">-->
+<!--                                <form>-->
+<!--                                    <page string="Deviation Line">-->
+<!--                                        <group>-->
+<!--                                            <field name="devyrspec"/>-->
+<!--                                            <field name="devourspec"/>-->
+<!--                                            <field name="devremark"/>-->
+<!--                                        </group>-->
+<!--                                    </page>-->
+<!--                                </form>-->
+<!--                                <tree string="Deviation Order Lines">-->
+<!--                                    <field name="devyrspec"/>-->
+<!--                                    <field name="devourspec"/>-->
+<!--                                    <field name="devremark"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+
+<!--                        <page string="Schedule Details" attrs="{'invisible':[('scheduleyn','=',False)]}">-->
+<!--                            <field colspan="4" name="schedule_line" nolabel="1" widget="one2many_list">-->
+<!--                                <form>-->
+<!--                                    <page string="Schedule Line">-->
+<!--                                        <group>-->
+<!--                                            <field name="schqty"/>-->
+<!--                                            <field name="schdate"/>-->
+<!--                                        </group>-->
+<!--                                    </page>-->
+<!--                                </form>-->
+<!--                                <tree string="Schedule Lines">-->
+<!--                                    <field name="schqty"/>-->
+<!--                                    <field name="schdate"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--                    </page>-->
+
+<!--                    <page string="Acessories Info" attrs="{'invisible':[('accessory_yn','=',False)]}">-->
+<!--                        <field colspan="4" name="acessories_line" nolabel="1" widget="one2many_list">-->
+<!--                            <form>-->
+<!--                                <page string="Acessories Line">-->
+<!--                                    <group>-->
+<!--                                        <field name="accessory_id"/>-->
+<!--                                        <field name="accessory_rate"/>-->
+<!--                                        <field name="accessory_qty"/>-->
+<!--                                    </group>-->
+<!--                                </page>-->
+<!--                            </form>-->
+<!--                            <tree string="Acessories Order Lines">-->
+<!--                                <field name="accessory_id"/>-->
+<!--                                <field name="accessory_rate"/>-->
+<!--                                <field name="accessory_qty"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </page>-->
+
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->
+<odoo>
+    <data>
+        <record id="view_orion_order" model="ir.ui.view">
+            <field name="name">view.orion_order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook//field[@name='order_line']/form//field[@name='name']" position="after">
+                    <notebook>
+                        <page string="General Information">
+                            <group>
+                                <field name="product_spec"/>
+                                <field name="tagno"/>
+                                <field name="cgst" invisible="1"/>
+                                <field name="igst" invisible="1"/>
+                                <field name="sgst" invisible="1"/>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="schno"/>
+                                    <field name="scheduleyn"/>
+                                </group>
+                                <group>
+                                    <field name="devyn"/>
+                                    <field name="accessory_yn"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Deviation Info" attrs="{'invisible':[('devyn','=',False)]}">
+                            <field colspan="4" name="deviation_line" nolabel="1" widget="one2many_list">
+                                <form>
+                                    <group>
+                                        <field name="devyrspec"/>
+                                        <field name="devourspec"/>
+                                        <field name="devremark"/>
+                                    </group>
+                                </form>
+                                <tree string="Deviation Order Lines">
+                                    <field name="devyrspec"/>
+                                    <field name="devourspec"/>
+                                    <field name="devremark"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Schedule Details" attrs="{'invisible':[('scheduleyn','=',False)]}">
+                            <field colspan="4" name="schedule_line" nolabel="1" widget="one2many_list">
+                                <form>
+                                    <group>
+                                        <field name="schqty"/>
+                                        <field name="schdate"/>
+                                    </group>
+                                </form>
+                                <tree string="Schedule Lines">
+                                    <field name="schqty"/>
+                                    <field name="schdate"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Accessories Info" attrs="{'invisible':[('accessory_yn','=',False)]}">
+                            <field colspan="4" name="accessories_line" nolabel="1" widget="one2many_list">
+                                <form>
+                                    <group>
+                                        <field name="accessory_id"/>
+                                        <field name="accessory_rate"/>
+                                        <field name="accessory_qty"/>
+                                    </group>
+                                </form>
+                                <tree string="Accessories Order Lines">
+                                    <field name="accessory_id"/>
+                                    <field name="accessory_rate"/>
+                                    <field name="accessory_qty"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+

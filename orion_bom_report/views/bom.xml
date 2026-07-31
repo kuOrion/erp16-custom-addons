@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Product Form View Extension -->
+    <record id="view_bom_add_cost_product" model="ir.ui.view">
+        <field name="name">view.bom_add_cost_product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Orion" name="orion">
+                    <group>
+                        <field name="quoted_cost" string="Quoted Cost"/>
+                        <field name="budgeted_cost" string="Budgeted Cost"/>
+                        <field name="actual_cost" string="Actual Cost"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- BOM Report Form -->
+    <record id="view_bom_report_form" model="ir.ui.view">
+        <field name="name">view.bom_report.form</field>
+        <field name="model">bom.report</field>
+        <field name="arch" type="xml">
+            <form string="BOM Report">
+                <group col="2">
+                    <separator string="Timeline" colspan="2"/>
+                    <group>
+                        <field name="bom1" required='1'/>
+                    </group>
+                    <separator colspan="2"/>
+                    <footer>
+                        <button string="Create BOM Report" type="object" name="create_bom_report" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- BOM Report Action -->
+    <record id="action_bom_report" model="ir.actions.act_window">
+        <field name="name">BOM Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">bom.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_bom_report"
+              name="BOM Report"
+              parent="stock.menu_stock_warehouse_mgmt"
+              action="action_bom_report"
+              groups="stock.group_stock_manager,stock.group_stock_user"/>
+</odoo>

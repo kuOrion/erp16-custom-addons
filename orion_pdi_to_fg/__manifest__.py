@@ -1,0 +1,26 @@
+{
+    'name': 'Create PDI to FG Report',
+    'version': '16.0.1.0.0',
+    'summary': 'PDI to FG Report Generator',
+    'description': 'Generate reports for PDI to FG transfers',
+    'category': 'Inventory',
+    'author': 'Sarthak Samgir',
+    # 'website': 'https://www.yourwebsite.com',
+    'depends': [
+        'base',
+        'stock',
+        'report_py3o',
+        'orion_inventory_product_transfer',
+    ],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/pditofg.xml',
+        'views/pditofg_report.xml',
+    ],
+    'assets': {},
+    'installable': True,
+    'license': 'LGPL-3',
+    'application': False,
+    'auto_install': False,
+    'license': 'LGPL-3',
+}

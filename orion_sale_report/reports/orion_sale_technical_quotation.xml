@@ -1,0 +1,123 @@
+    <odoo>
+        <!--    &lt;!&ndash; Orion Quotation Technical Report &ndash;&gt;-->
+        <!--    <record id="report_orion_sale_order" model="ir.actions.report">-->
+        <!--        <field name="name">Orion Quotation Technical</field>-->
+        <!--        <field name="type">ir.actions.report</field>-->
+        <!--        <field name="model">sale.order</field>-->
+        <!--        <field name="report_name">orion_sale_report.report_sale_order</field>-->
+        <!--        <field name="report_type">py3o</field>-->
+        <!--        <field name="py3o_filetype">odt</field>-->
+        <!--        <field name="module">orion_sale_report</field>-->
+        <!--        <field name="py3o_template_fallback">reports/orion_sale_technical_quotation.odt</field>-->
+        <!--        <field name="binding_model_id" ref="sale.model_sale_order"/>-->
+        <!--        <field name="binding_type">report</field>-->
+        <!--    </record>-->
+
+        <!-- Orion Quotation Technical Report -->
+        <record id="report_orion_sale_order" model="ir.actions.report">
+            <field name="name">Orion Quotation Technical</field>
+            <field name="type">ir.actions.report</field>
+            <field name="model">sale.order</field>
+            <field name="report_name">orion_sale_report.report_sale_order</field>
+            <field name="report_type">py3o</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="module">orion_sale_report</field>
+            <field name="py3o_template_fallback">reports/orion_sale_technical_quotation.odt</field>
+
+            <field name="print_report_name">'%s' % object.name</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <!-- Orion Quotation Report -->
+        <record id="report_orion_sale_summary" model="ir.actions.report">
+            <field name="name">Orion Domestic Quotation</field>
+            <field name="type">ir.actions.report</field>
+            <field name="model">sale.order</field>
+            <field name="report_name">orion_sale_report.report_sale_summary</field>
+            <field name="report_type">py3o</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="module">orion_sale_report</field>
+            <field name="py3o_template_fallback">reports/orion_sales_quotation_report.odt</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'%s' % object.name</field>
+
+        </record>
+
+        <!-- Orion Export Quotation Report -->
+        <record id="report_orion_sale_export" model="ir.actions.report">
+            <field name="name">Orion Export Quotation</field>
+            <field name="type">ir.actions.report</field>
+            <field name="model">sale.order</field>
+            <field name="report_name">orion_sale_report.report_sale_export</field>
+            <field name="report_type">py3o</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="module">orion_sale_report</field>
+            <field name="py3o_template_fallback">reports/orion_export_quotation.odt</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'%s' % object.name</field>
+
+        </record>
+
+        <!-- Orion Acknowledgment Report -->
+        <record id="report_orion_sale_acknowledgment" model="ir.actions.report">
+            <field name="name">Orion Acknowledgment</field>
+            <field name="type">ir.actions.report</field>
+            <field name="model">sale.order</field>
+            <field name="report_name">orion_sale_report.report_sale_acknowledgment</field>
+            <field name="report_type">py3o</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="module">orion_sale_report</field>
+            <field name="py3o_template_fallback">reports/orion_acknowledgment_report.odt</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'%s' % object.name</field>
+
+        </record>
+
+<!--        &lt;!&ndash; Orion Proforma Report &ndash;&gt;-->
+<!--        <record id="report_orion_sale_proforma" model="ir.actions.report">-->
+<!--            <field name="name">Orion Domestic Proforma</field>-->
+<!--            <field name="type">ir.actions.report</field>-->
+<!--            <field name="model">sale.order</field>-->
+<!--            <field name="report_name">orion_sale_report.report_proforma</field>-->
+<!--            <field name="report_type">py3o</field>-->
+<!--            <field name="py3o_filetype">odt</field>-->
+<!--            <field name="module">orion_sale_report</field>-->
+<!--            <field name="py3o_template_fallback">reports/orion_proforma_report.odt</field>-->
+<!--            <field name="binding_model_id" ref="sale.model_sale_order"/>-->
+<!--            &lt;!&ndash;        <field name="print_report_name">'%s' % object.name</field>&ndash;&gt;-->
+<!--            <field name="print_report_name">'PI_%s' % (object.name)</field>-->
+<!--            <field name="binding_type">report</field>-->
+<!--        </record>-->
+
+
+        <!-- Orion Oguage Report -->
+        <record id="report_orion_sale_oguage" model="ir.actions.report">
+            <field name="name">Orion Oguage</field>
+            <field name="type">ir.actions.report</field>
+            <field name="model">sale.order</field>
+            <field name="report_name">orion_sale_report.report_oguage</field>
+            <field name="report_type">py3o</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="module">orion_sale_report</field>
+            <field name="py3o_template_fallback">reports/orion_oguage_quotation_report.odt</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'OG_%s' % object.name</field>
+
+        </record>
+
+        <!-- Action for New Report -->
+        <record id="action_generate_py3o_summary_report_action" model="ir.actions.server">
+            <field name="name">Generate Py3O Summary Report</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">action = model.action_generate_py3o_summary_report()</field>
+        </record>
+
+
+</odoo>

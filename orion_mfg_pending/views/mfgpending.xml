@@ -1,0 +1,165 @@
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <record id="view_mfg_pending_tree" model="ir.ui.view">-->
+<!--            <field name="name">view.mfg.pending.tree</field>-->
+<!--            <field name="model">mrp.production</field>-->
+<!--            <field name="priority">55</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Manufacture Pending Report" decoration-warning="message_needaction==True"-->
+<!--                      decoration-muted="state=='cancel'" create="false" delete="false" edit="false">-->
+<!--                    <field name="name" string="Name"/>-->
+<!--                    <field name="origin" string="Order Reference"/>-->
+<!--                    <field name="partner_id" string="Customer Name"/>-->
+<!--                    <field name="product_id" string="Product"/>-->
+<!--                    <field name="product_qty" string="Quantity"/>-->
+<!--                    <field name="qty_producing" string="Quantity Producing"/>-->
+<!--                    <field name="date_planned_start" string="Scheduled Date"/>-->
+<!--                    <field name="message_needaction" invisible="1"/>-->
+<!--                    <field name="state" invisible="1"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_mfgpending_form" model="ir.ui.view">-->
+<!--            <field name="name">view.mfgpending.form</field>-->
+<!--            <field name="model">mfgpending</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Manufacture Pending Goods">-->
+<!--                    <group>-->
+<!--                        <separator string="General Information" colspan="2"/>-->
+<!--                        <group>-->
+<!--                            <field name="from_date" required="1"/>-->
+<!--                            <field name="date_filter_type" widget="radio"/>-->
+<!--                            <field name="to_date" required="1"-->
+<!--                                   attrs="{'invisible': [('date_filter_type', '=', 'schedule')]}"/>-->
+<!--                            <field name="schedule_date"-->
+<!--                                   attrs="{'required': [('date_filter_type', '=', 'schedule')], 'invisible': [('date_filter_type', '=', 'range')]}"/>-->
+<!--&lt;!&ndash;                            <field name="criteria" required="1"/>&ndash;&gt;-->
+<!--                            <field name="partner_id"/>-->
+<!--                            <field name="product_id"/>-->
+<!--                            <field name="order_type" widget="radio"/>-->
+<!--&lt;!&ndash;                            <field name="group_by" widget="radio"/>&ndash;&gt;-->
+<!--                        </group>-->
+<!--                    </group>-->
+
+<!--                    <footer>-->
+<!--                        <button string="Create Report" type="object" name="create_mfgpending_report"-->
+<!--                                class="btn-primary"/>-->
+<!--                        <button string="View Orders" type="object" name="create_mfgpending_treeview"-->
+<!--                                class="btn-secondary"/>-->
+<!--                        <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+<!--                    </footer>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record model="ir.actions.act_window" id="action_mfg_pending">-->
+<!--            <field name="name">Manufacturing Pending Products</field>-->
+<!--            <field name="res_model">mfgpending</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Report action definition &ndash;&gt;-->
+<!--        &lt;!&ndash; This is a placeholder for your existing report definition &ndash;&gt;-->
+<!--        <record id="py3o_mfgpending" model="ir.actions.report">-->
+<!--            <field name="name">Manufacturing Pending Report</field>-->
+<!--            <field name="model">mfgpending</field>-->
+<!--            <field name="report_name">orion_mfg_pending.mfgpending_report</field>-->
+<!--            <field name="report_type">py3o</field>-->
+<!--            <field name="py3o_filetype">odt</field>-->
+<!--            <field name="module">orion_mfg_pending</field>-->
+<!--            <field name="py3o_template_fallback">reports/mfgpending_report.odt</field>-->
+<!--        </record>-->
+
+<!--        <menuitem id="menu_mfg_pending" name="Manufacture Pending Report" parent="mrp.menu_mrp_manufacturing"-->
+<!--                  action="action_mfg_pending"/>-->
+<!--    </data>-->
+<!--</odoo>-->
+
+
+<odoo>
+    <data>
+        <!-- Tree View for Manufacturing Orders -->
+        <record id="view_mfg_pending_tree" model="ir.ui.view">
+            <field name="name">view.mfg.pending.tree</field>
+            <field name="model">mrp.production</field>
+            <field name="priority">55</field>
+            <field name="arch" type="xml">
+                <tree string="Manufacture Pending Report"
+                      decoration-warning="message_needaction==True"
+                      decoration-muted="state=='cancel'"
+                      create="false" delete="false" edit="false">
+                    <field name="name" string="MO Number"/>
+                    <field name="origin" string="Order Reference"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="product_id" string="Product"/>
+                    <field name="product_qty" string="Quantity"/>
+                    <field name="qty_producing" string="Quantity Producing"/>
+                    <field name="date_planned_start" string="Scheduled Date"/>
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for the Wizard -->
+        <record id="view_mfgpending_form" model="ir.ui.view">
+            <field name="name">view.mfgpending.form</field>
+            <field name="model">mfgpending</field>
+            <field name="arch" type="xml">
+                <form string="Manufacture Pending Report">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Manufacturing Pending Report</h1>
+                            <p>Use this form to view pending manufacturing orders. The report will automatically show
+                                all pending orders using default date ranges.
+                            </p>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="from_date" required="1"/>
+                                <field name="date_filter_type" widget="radio"/>
+                                <field name="to_date" required="1"
+                                       attrs="{'invisible': [('date_filter_type', '=', 'schedule')]}"/>
+                                <field name="schedule_date"
+                                       attrs="{'required': [('date_filter_type', '=', 'schedule')],
+                                              'invisible': [('date_filter_type', '=', 'range')]}"/>
+                            </group>
+                            <group>
+                                <field name="order_type" widget="radio"/>
+                                <field name="partner_id"/>
+                                <field name="product_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Generate Report" type="object"
+                                name="create_mfgpending_report" class="btn-primary"/>
+                        <button string="View Orders" type="object"
+                                name="create_mfgpending_treeview" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action to open the wizard -->
+        <record model="ir.actions.act_window" id="action_mfg_pending">
+            <field name="name">Manufacturing Pending Report</field>
+            <field name="res_model">mfgpending</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        </record>
+
+        <!-- Menu Item under Manufacturing -->
+        <!--        <menuitem id="menu_mfg_pending"-->
+        <!--                  name="Pending MO Report"-->
+        <!--                  parent="mrp.menu_mrp_root"-->
+        <!--                  action="action_mfg_pending"-->
+        <!--                  sequence="20"/>-->
+        <menuitem id="menu_mfg_pending" name="Manufacture Pending Report" parent="mrp.menu_mrp_manufacturing"
+                  action="action_mfg_pending"/>
+    </data>
+</odoo>

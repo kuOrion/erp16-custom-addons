@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Sample Invoice Settings"
+                         string="SM invoice report Number Settings">
+                        <h2>Sample Invoice Configuration</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 o_setting_box">
+                                <div class="o_setting_left_pane" style="width: 150px;">
+                                    <field name="sample_invoice_prefix" style="width: 250px;"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sample_invoice_prefix"/>
+                                    <div class="text-muted">
+                                        Set the prefix for sample invoice numbers (e.g., SI/, INV/, etc.)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

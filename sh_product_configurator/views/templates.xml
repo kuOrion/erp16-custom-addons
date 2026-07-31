@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="configure_optional_products_inherit" inherit_id="sale_product_configurator.configure_optional_products">
+        <xpath expr="//table[hasclass('table')]" position="before">
+            <input type="hidden" id="attribute_parent_map" t-att-value="attribute_parent_map"/>
+        </xpath>
+        <!-- Hide the TH for Quantity if model is 'product.product' -->
+        <xpath expr="//th[hasclass('td-qty')]" position="attributes">
+                <attribute name="t-attf-class">td-qty #{'d-none' if sh_active_model == 'product.product' else ''}</attribute>
+        </xpath>
+
+        <!-- Hide the TD for Quantity if model is 'product.product' -->
+        <xpath expr="//td[hasclass('td-qty')]" position="attributes">
+            <attribute name="t-attf-class">td-qty #{'d-none' if sh_active_model == 'product.product' else ''}</attribute>
+        </xpath>
+
+        <xpath expr="//tr[hasclass('o_total_row')]" position="attributes">
+            <attribute name="t-attf-class">td-qty #{'d-none' if sh_active_model == 'product.product' else ''}</attribute>
+        </xpath>
+
+        <xpath expr="//th[hasclass('td-price')]" position="attributes">
+            <attribute name="t-attf-class">td-qty #{'d-none' if sh_active_model == 'product.product' else ''}</attribute>
+        </xpath>
+
+        <xpath expr="//td[hasclass('td-price')]" position="attributes">
+            <attribute name="t-attf-class">td-qty #{'d-none' if sh_active_model == 'product.product' else ''}</attribute>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="mrp_bom_form_view_inherit" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Modify the components table -->
+            <xpath expr="//field[@name='bom_line_ids']" position="attributes">
+                <attribute name="editable">bottom</attribute>
+            </xpath>
+            <xpath expr="//field[@name='bom_line_ids']/tree" position="inside">
+                <field name="product_internal_reference"/>
+<!--                <field name="Brotout"/>-->
+            </xpath>
+        </field>
+    </record>
+</odoo>

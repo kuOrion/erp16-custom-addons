@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash; Menu for Reports &ndash;&gt;-->
+<!--        &lt;!&ndash;        <menuitem id="base_report_parent" name="MIS-Reports"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <menuitem id="report_quotation" name="Reports" parent="base_report_parent"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <menuitem id="menu_report_quotation" name="Quotation Report" parent="report_quotation"&ndash;&gt;-->
+<!--        &lt;!&ndash;                  action="action_quotation"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <menuitem id="menu_report_quotation" name="Quotation Report" parent="orion_mis_invoice.menu_mis_reports_root"&ndash;&gt;-->
+<!--        &lt;!&ndash;                  action="action_quotation"/>&ndash;&gt;-->
+<!--        <menuitem id="menu_report_quotation" name="Quotation Report" parent="orion_mis_invoice.menu_mis_reports_root"-->
+<!--        />-->
+
+
+<!--        &lt;!&ndash; Quotation Report Form View &ndash;&gt;-->
+<!--        <record id="view_quotation_form" model="ir.ui.view">-->
+<!--            <field name="name">view.quotation.form</field>-->
+<!--            <field name="model">quotation.report.wizard</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Quotation Report">-->
+<!--                    <group col="2">-->
+<!--                        <separator string="Timeline" colspan="2"/>-->
+<!--                        <group>-->
+<!--                            <field name="from_date" required="1"/>-->
+<!--                            <field name="to_date" required="1"/>-->
+<!--                            <field name="partner_id"/>-->
+<!--                            <field name="product_id"/>-->
+<!--                        </group>-->
+<!--                        <separator colspan="2"/>-->
+<!--                        <footer>-->
+<!--                            <button string="Create Report" type="object" name="create_quotation_report"-->
+<!--                                    class="btn-primary"/>-->
+<!--                            <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+<!--                        </footer>-->
+<!--                    </group>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Action for the Quotation Wizard &ndash;&gt;-->
+<!--        <record id="action_quotation" model="ir.actions.act_window">-->
+<!--            <field name="name">Quotation Report</field>-->
+<!--            <field name="res_model">quotation.report.wizard</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
+<!--    </data>-->
+
+<!--    <menuitem-->
+<!--            id="menu_report_quotation"-->
+<!--            name="Quotation Report"-->
+<!--            parent="menu_report_quotation"-->
+<!--            action="action_quotation"-->
+<!--            sequence="1"/>-->
+
+
+<!--</odoo>-->
+<odoo>
+    <data>
+        <!-- Quotation Reports Submenu -->
+        <menuitem
+                id="menu_quotation_reports"
+                name="Quotation Report"
+                parent="orion_mis_reports_base.menu_mis_reports_root"
+                sequence="3"/>
+
+        <!-- Quotation Report Form View -->
+        <record id="view_quotation_form" model="ir.ui.view">
+            <field name="name">view.quotation.form</field>
+            <field name="model">quotation.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Quotation Report">
+                    <group col="2">
+                        <separator string="Timeline" colspan="2"/>
+                        <group>
+                            <field name="from_date" required="1"/>
+                            <field name="to_date" required="1"/>
+                            <field name="partner_id"/>
+                            <field name="product_id"/>
+                            <field name="quotation_type" widget="radio"/>
+
+                        </group>
+                        <separator colspan="2"/>
+                        <footer>
+                            <button string="Create Report" type="object" name="create_quotation_report"
+                                    class="btn-primary"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for the Quotation Wizard -->
+        <record id="action_quotation" model="ir.actions.act_window">
+            <field name="name">Quotation Report</field>
+            <field name="res_model">quotation.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Menu item for the report -->
+        <menuitem
+                id="menu_report_quotation"
+                name="Quotation Report"
+                parent="menu_quotation_reports"
+                action="action_quotation"
+                sequence="1"/>
+    </data>
+</odoo>

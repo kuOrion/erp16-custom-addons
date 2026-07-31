@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+        <!-- Define MIS-Reports menu only in one module -->
+<!--        <menuitem-->
+<!--                id="menu_mis_reports_root"-->
+<!--                name="MIS-Reports"-->
+<!--                sequence="10"/>-->
+
+        <!-- Invoice Reports Submenu -->
+        <menuitem
+                id="menu_invoice_reports"
+                name="Invoice Report"
+                parent="orion_mis_reports_base.menu_mis_reports_root"
+                sequence="1"/>
+
+        <!-- Form View for Invoice Report -->
+        <record id="view_invoicewise_form" model="ir.ui.view">
+            <field name="name">view.invoicewise.form</field>
+            <field name="model">orion_mis_invoice.invoicewise</field>
+            <field name="arch" type="xml">
+                <form string="Invoice Reports">
+                    <group>
+                        <separator string="Timeline" colspan="2"/>
+                        <group>
+                            <field name="from_date" required="1"/>
+                            <field name="to_date" required="1"/>
+                            <field name="partner_id"/>
+                            <field name="product_id"/>
+                            <field name="invoice_type" widget="radio"/>
+
+                        </group>
+                        <separator colspan="2"/>
+                        <group>
+                            <footer>
+                                <button string="Create Report" type="object" name="create_invoicewise_report"
+                                        class="oe_highlight"/>
+                                <button string="Cancel" special="cancel" class="btn-secondary"/>
+                            </footer>
+                        </group>+
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for Invoice Report -->
+        <record id="action_invoicewise" model="ir.actions.act_window">
+            <field name="name">Invoice Reports</field>
+            <field name="res_model">orion_mis_invoice.invoicewise</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Sales Register under Invoice Reports -->
+        <menuitem
+                id="menu_sales_register"
+                name="Invoice Reports"
+                parent="menu_invoice_reports"
+                action="action_invoicewise"
+                sequence="1"/>
+    </data>
+</odoo>

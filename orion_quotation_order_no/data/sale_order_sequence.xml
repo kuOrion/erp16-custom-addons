@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Quotation Sequence -->
+    <record id="seq_sale_order_quotation" model="ir.sequence">
+        <field name="name">Quotation Sequence</field>
+        <field name="code">sale.order.quotation</field>
+        <field name="prefix">KQ</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+
+    <!-- Sale Order Sequence -->
+    <record id="seq_sale_order_order" model="ir.sequence">
+        <field name="name">Sale Order Sequence</field>
+        <field name="code">sale.order.order</field>
+        <field name="prefix">OA</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <!-- Wizard Form View -->
+        <record id="view_sale_order_confirm_wizard_form" model="ir.ui.view">
+            <field name="name">sale.order.confirm.wizard.form</field>
+            <field name="model">sale.order.confirm.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Confirm Order">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fa fa-exclamation-triangle"/>
+                        <strong>Confirmation Required</strong>
+                    </div>
+                    <group>
+                        <field name="sale_order_id" invisible="1"/>
+                        <field name="message" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button name="action_confirm_order"
+                                string="Confirm"
+                                type="object"
+                                class="btn-primary"/>
+                        <button name="action_cancel"
+                                string="Cancel"
+                                type="object"
+                                class="btn-secondary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Remove the button replacement since we're overriding the method directly -->
+        <!-- The original confirm button will now use our validation logic -->
+
+        <!-- Security Rules for the Wizard -->
+        <record id="access_sale_order_confirm_wizard" model="ir.model.access">
+            <field name="name">sale.order.confirm.wizard</field>
+            <field name="model_id" ref="model_sale_order_confirm_wizard"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="group_id" ref="sales_team.group_sale_salesman"/>
+        </record>
+    </data>
+</odoo>

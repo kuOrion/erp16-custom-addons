@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_mrp_production_form_inherit_button" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.button</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Place the button next to Confirm -->
+            <xpath expr="//header/button[@name='action_confirm']" position="after">
+                <button name="action_create_new_mo"
+                        string="New"
+                        type="object"
+                        class="btn-primary"
+                        icon="fa-plus"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

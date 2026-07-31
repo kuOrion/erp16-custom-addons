@@ -1,0 +1,158 @@
+<odoo>
+    <data>
+        <!-- Existing PDI to FG Tree View -->
+        <record model="ir.ui.view" id="orion_inventory_product_transfer.td_quant_transfer_pdifg_tree">
+            <field name="name">stock.quant.tree.route</field>
+            <field name="model">stock.quant</field>
+            <field name="arch" type="xml">
+                <tree string="Quants Transfer" create="false" decoration-success="transferred_from_pdi==True">
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="location_id"/>
+                    <field name="quantity"/>
+                    <field name="product_uom_id" groups="uom.group_uom"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="transferred_from_pdi" invisible="1"/>
+                    <field name="transferred_from_fg" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- NEW: FG to Stock Tree View -->
+        <record model="ir.ui.view" id="orion_inventory_product_transfer.td_quant_transfer_fgtostock_tree">
+            <field name="name">stock.quant.tree.fgtostock</field>
+            <field name="model">stock.quant</field>
+            <field name="arch" type="xml">
+                <tree string="FG to Stock Transfer" create="false" decoration-success="transferred_from_fg==True">
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="location_id"/>
+                    <field name="quantity"/>
+                    <field name="product_uom_id" groups="uom.group_uom"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="transferred_from_pdi" invisible="1"/>
+                    <field name="transferred_from_fg" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_stock_quant_transfer_search" model="ir.ui.view">
+            <field name="name">stock.quant.transfer.search</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.quant_search_view"/>
+            <field name="arch" type="xml">
+                <filter name="productgroup" position="after">
+                    <separator/>
+                    <filter string="From PDI" name="from_pdi" domain="[('transferred_from_pdi', '=', True)]"/>
+                    <filter string="From FG" name="from_fg" domain="[('transferred_from_fg', '=', True)]"/>
+                    <filter string="Not Transferred" name="not_transferred"
+                            domain="[('transferred_from_fg', '=', False)]"/>
+                </filter>
+            </field>
+        </record>
+
+        <!-- Action for PDI to FG Transfer -->
+        <record model="ir.actions.act_window" id="action_quant_transfer_pdifg">
+            <field name="name">Transfer PDI to FG</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.quant</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="td_quant_transfer_pdifg_tree"/>
+        </record>
+
+        <!-- NEW: Action for FG to Stock Transfer -->
+        <record model="ir.actions.act_window" id="action_quant_transfer_fgtostock">
+            <field name="name">Transfer FG to Stock</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.quant</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="td_quant_transfer_fgtostock_tree"/>
+        </record>
+
+        <!-- PDI to FG Initial Dialog Form View -->
+        <record id="view_pdi_to_fg_form" model="ir.ui.view">
+            <field name="name">PDI To FG Transfer</field>
+            <field name="model">pdi.to.fg</field>
+            <field name="arch" type="xml">
+                <form string="PDI TO FG Transfer">
+                    <p>Are you sure, you would like to transfer stock from PDI Location To FG Location ?</p>
+                    <footer>
+                        <button name="open_quants" string="Open Products" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- PDI to FG Menu -->
+        <record id="td_action_pdi_to_fg" model="ir.actions.act_window">
+            <field name="name">PDI to FG</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pdi.to.fg</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_pdi_to_fg_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="td_view_pditofg_transfer_form" model="ir.ui.view">
+            <field name="name">pdi.to.fg.transfer.form</field>
+            <field name="model">pdi.to.fg.transfer</field>
+            <field name="arch" type="xml">
+                <form string="PDI To FG Transfer">
+                    <field name="total_serials" readonly="1" nolabel="1"/>
+                    <footer>
+                        <button name="action_transfer" string="Transfer" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- FG to Stock Initial Dialog Form View -->
+        <record id="view_fg_to_stock_form" model="ir.ui.view">
+            <field name="name">fg.to.stock.form</field>
+            <field name="model">fg.to.stock</field>
+            <field name="arch" type="xml">
+                <form string="FG TO Stock Transfer">
+                    <p>Are you sure, you would like to transfer stock from FG Location To Stock Location ?</p>
+                    <footer>
+                        <button name="open_quants" string="Open Products" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- FG to Stock Menu -->
+        <record id="td_action_fg_to_stock" model="ir.actions.act_window">
+            <field name="name">FG to Stock</field>
+            <field name="res_model">fg.to.stock</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_fg_to_stock_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="td_view_fgtostock_transfer_form" model="ir.ui.view">
+            <field name="name">fg.to.stock.transfer.form</field>
+            <field name="model">fg.to.stock.transfer</field>
+            <field name="arch" type="xml">
+                <form string="FG To Stock Transfer">
+                    <field name="total_serials" readonly="1" nolabel="1"/>
+                    <footer>
+                        <button name="action_transfer" string="Transfer" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Menu Items -->
+        <menuitem id="menu_pditofg" name="PDI to FG Transfer" parent="stock.menu_stock_warehouse_mgmt" sequence="10"
+                  action="td_action_pdi_to_fg"
+                  groups="stock.group_stock_manager,stock.group_stock_user"/>
+
+        <menuitem id="menu_td_fg_to_stock" action="td_action_fg_to_stock" sequence="11" name="FG to Stock transfer"
+                  parent="stock.menu_stock_warehouse_mgmt"/>
+
+    </data>
+</odoo>

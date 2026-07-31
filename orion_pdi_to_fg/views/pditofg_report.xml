@@ -1,0 +1,29 @@
+<odoo>
+    <record id="action_report_pditofg" model="ir.actions.report">
+        <field name="name">PDI To FG Report</field>
+        <field name="type">ir.actions.report</field>
+        <!--        <field name="model">pdi.quant.report.wizard</field>-->
+        <field name="model">pditofg.report</field>
+        <field name="report_name">orion_pdi_to_fg.action_report_pditofg</field>
+        <!--        <field name="report_name">orion_pdi_to_fg.action_pdi_quant_report_py3o</field>-->
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_pdi_to_fg</field>
+        <field name="py3o_template_fallback">reports/py3o_pditofg.odt</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_bom"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
+
+<!--<odoo>-->
+<!--    &lt;!&ndash; Basic py3o report definition &ndash;&gt;-->
+<!--    <record id="action_report_pditofg" model="ir.actions.report">-->
+<!--        <field name="name">PDI To FG Report</field>-->
+<!--        <field name="model">pditofg.report</field>-->
+<!--        <field name="report_type">py3o</field>-->
+<!--        <field name="report_name">pditofg_report</field>-->
+<!--        <field name="py3o_filetype">odt</field>-->
+<!--        <field name="py3o_template_fallback">reports/py3o_pditofg.odt</field>-->
+<!--    </record>-->
+<!--</odoo>-->

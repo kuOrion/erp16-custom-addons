@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_orion_purchase_order_quotation" model="ir.actions.report">
+        <field name="name">Purchase Order Quotation</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">purchase.order</field>
+        <field name="report_name">orion_purchase_report.report_purchase_order_quotation</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_purchase_report</field>
+        <field name="py3o_template_fallback">reports/purchase_quotation.odt</field> <!-- New ODT template -->
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

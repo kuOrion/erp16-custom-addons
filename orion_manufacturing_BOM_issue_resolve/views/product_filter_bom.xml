@@ -1,0 +1,19 @@
+<odoo>
+    <record id="product_template_search_inherit_bom" model="ir.ui.view">
+        <field name="name">product.template.search.bom.filter</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+
+            <!--            <xpath expr="//search" position="inside">-->
+            <xpath expr="//filter[1]" position="before">
+
+                <filter name="without_bom"
+                        string="Product Without BOM"
+                        domain="[('has_bom', '=', False)]"/>
+
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

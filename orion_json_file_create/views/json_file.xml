@@ -1,0 +1,142 @@
+<!--&lt;!&ndash;<?xml version="1.0" encoding="utf-8"?>&ndash;&gt;-->
+<!--&lt;!&ndash;<odoo>&ndash;&gt;-->
+<!--&lt;!&ndash;    <record id="view_form_create_json" model="ir.ui.view">&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="name">view.form.create.json</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="model">account.einvoice.create.json</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="arch" type="xml">&ndash;&gt;-->
+<!--&lt;!&ndash;            <form string="Create JSON File for selected invoices">&ndash;&gt;-->
+<!--&lt;!&ndash;                <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p class="text-center">Create e-invoice JSON File for selected invoices</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </group>&ndash;&gt;-->
+<!--&lt;!&ndash;                <footer>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button string="Create e-invoice JSON File" type="object" name="create_json_file"&ndash;&gt;-->
+<!--&lt;!&ndash;                            class="btn-primary"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button string="Cancel" class="btn-secondary" special="cancel"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </footer>&ndash;&gt;-->
+<!--&lt;!&ndash;            </form>&ndash;&gt;z-->
+<!--&lt;!&ndash;        </field>&ndash;&gt;-->
+<!--&lt;!&ndash;    </record>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <record model="ir.actions.act_window" id="action_account_einvoice_create_json">&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="name">Create e-invoice JSON File</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="type">ir.actions.act_window</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="res_model">account.einvoice.create.json</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="view_mode">form</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="target">new</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="binding_model_id" ref="account.model_account_move"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="binding_view_types">list</field>&ndash;&gt;-->
+<!--&lt;!&ndash;    </record>&ndash;&gt;-->
+<!--&lt;!&ndash;</odoo>&ndash;&gt;-->
+
+
+
+
+
+
+
+
+
+<!--<odoo>-->
+<!--    <record id="view_form_create_json" model="ir.ui.view">-->
+<!--        <field name="name">view.form_create_json</field>-->
+<!--        <field name="model">account.einvoice.create.json</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Create JSON File for selected invoices">-->
+<!--                <group col="2" fill="0" height="500">-->
+<!--                    <separator string="Create e-invoice JSON File for selected invoices" colspan="2"/>-->
+<!--                    <separator colspan="2"/>-->
+<!--                    <group>-->
+<!--                        <footer>-->
+<!--                            <button string="Create e-invoice JSON File" type="object" name="create_json_file"-->
+<!--                                    class="btn btn-primary"/>-->
+<!--                            <button string="Cancel" class="btn btn-secondary" special="cancel"/>-->
+<!--                        </footer>-->
+<!--                    </group>-->
+<!--                </group>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record model="ir.actions.act_window" id="action_account_invoice_create_json">-->
+<!--        <field name="name">Create e-invoice JSON File</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">account.einvoice.create.json</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="target">new</field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Server Action to replace the old ir.values approach &ndash;&gt;-->
+<!--    <record id="action_create_json_server_action" model="ir.actions.server">-->
+<!--        <field name="name">Create e-invoice JSON File</field>-->
+<!--        <field name="model_id" ref="account.model_account_move"/>-->
+<!--        <field name="binding_model_id" ref="account.model_account_move"/>-->
+<!--        <field name="binding_view_types">list,form</field>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--            action = {-->
+<!--            'type': 'ir.actions.act_window',-->
+<!--            'res_model': 'account.einvoice.create.json',-->
+<!--            'view_mode': 'form',-->
+<!--            'target': 'new',-->
+<!--            'context': env.context,-->
+<!--            }-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->
+
+
+
+
+
+
+
+<odoo>
+    <record id="view_form_create_json" model="ir.ui.view">
+        <field name="name">view.form_create_json</field>
+        <field name="model">account.einvoice.create.json</field>
+        <field name="arch" type="xml">
+            <form string="Create JSON File for selected invoices">
+                <group col="2" fill="0" height="500">
+                    <separator string="Create e-invoice JSON File for selected invoices" colspan="2"/>
+                    <separator colspan="2"/>
+                    <group>
+                        <footer>
+                            <button string="Create e-invoice JSON File"
+                                    type="object"
+                                    name="create_json_file"
+                                    class="btn btn-primary"/>
+                            <button string="Cancel"
+                                    class="btn btn-secondary"
+                                    special="cancel"/>
+                        </footer>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_account_invoice_create_json">
+        <field name="name">Create e-invoice JSON File</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.einvoice.create.json</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_create_json_server_action" model="ir.actions.server">
+        <field name="name">Create e-invoice JSON File</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+action = {
+    'type': 'ir.actions.act_window',
+    'res_model': 'account.einvoice.create.json',
+    'view_mode': 'form',
+    'target': 'new',
+    'context': env.context,
+}
+        ]]></field>
+    </record>
+</odoo>

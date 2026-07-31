@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash; Root Menu for MIS Reports &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="menu_mis_reports_root"-->
+<!--                name="MIS-Reports"-->
+<!--                sequence="10"/>-->
+
+<!--        &lt;!&ndash; Form View for Invoice Report &ndash;&gt;-->
+<!--        <record id="view_invoicewise_form" model="ir.ui.view">-->
+<!--            <field name="name">view.invoicewise.form</field>-->
+<!--            <field name="model">orion_mis_invoice.invoicewise</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Invoice Reports">-->
+<!--                    <group>-->
+<!--                        <separator string="Timeline" colspan="2"/>-->
+<!--                        <group>-->
+<!--                            <field name="from_date" required="1"/>-->
+<!--                            <field name="to_date" required="1"/>-->
+<!--                            <field name="partner_id"/>-->
+<!--                            <field name="product_id"/>-->
+<!--                        </group>-->
+<!--                        <separator colspan="2"/>-->
+<!--                        <group>-->
+<!--                            <footer>-->
+<!--                                <button string="Create Report" type="object" name="create_invoicewise_report"-->
+<!--                                        class="oe_highlight"/>-->
+<!--                                <button string="Cancel" special="cancel" class="btn-secondary"/>-->
+<!--                            </footer>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Action for Invoice Report &ndash;&gt;-->
+<!--        <record id="action_invoicewise" model="ir.actions.act_window">-->
+<!--            <field name="name">Invoice Reports</field>-->
+<!--            <field name="res_model">orion_mis_invoice.invoicewise</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Menu Structure &ndash;&gt;-->
+<!--        &lt;!&ndash; Reports Main Menu &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="report_salewise"-->
+<!--                name="Reports"-->
+<!--                parent="menu_mis_reports_root"-->
+<!--                sequence="1"/>-->
+
+<!--        &lt;!&ndash; Pending Report Submenu &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="menu_report_salewise"-->
+<!--                name="Pending Report"-->
+<!--                parent="report_salewise"-->
+<!--                action="action_salewise"-->
+<!--                sequence="1"/>-->
+
+<!--        &lt;!&ndash; Invoice Reports Submenu &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="menu_invoice_reports"-->
+<!--                name="Invoice Reports"-->
+<!--                parent="report_salewise"-->
+<!--                sequence="2"/>-->
+
+<!--        &lt;!&ndash; Sales Register under Invoice Reports &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="menu_sales_register"-->
+<!--                name="Sales Register"-->
+<!--                parent="menu_invoice_reports"-->
+<!--                action="action_invoicewise"-->
+<!--                sequence="1"/>-->
+<!--    </data>-->
+<!--</odoo>-->
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash; Root Menu for MIS Reports &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="menu_mis_reports_root"-->
+<!--                name="MIS-Reports"-->
+<!--                sequence="10"/>-->
+
+<!--        &lt;!&ndash; Form View for Invoice Report &ndash;&gt;-->
+<!--        <record id="view_invoicewise_form" model="ir.ui.view">-->
+<!--            <field name="name">view.invoicewise.form</field>-->
+<!--            <field name="model">orion_mis_invoice.invoicewise</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Invoice Reports">-->
+<!--                    <group>-->
+<!--                        <separator string="Timeline" colspan="2"/>-->
+<!--                        <group>-->
+<!--                            <field name="from_date" required="1"/>-->
+<!--                            <field name="to_date" required="1"/>-->
+<!--                            <field name="partner_id"/>-->
+<!--                            <field name="product_id"/>-->
+<!--                        </group>-->
+<!--                        <separator colspan="2"/>-->
+<!--                        <group>-->
+<!--                            <footer>-->
+<!--                                <button string="Create Report" type="object" name="create_invoicewise_report"-->
+<!--                                        class="oe_highlight"/>-->
+<!--                                <button string="Cancel" special="cancel" class="btn-secondary"/>-->
+<!--                            </footer>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Action for Invoice Report &ndash;&gt;-->
+<!--        <record id="action_invoicewise" model="ir.actions.act_window">-->
+<!--            <field name="name">Invoice Reports</field>-->
+<!--            <field name="res_model">orion_mis_invoice.invoicewise</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Menu Structure &ndash;&gt;-->
+<!--        &lt;!&ndash; Reports Main Menu &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="report_salewise"-->
+<!--                name="Reports"-->
+<!--                parent="menu_mis_reports_root"-->
+<!--                sequence="1"/>-->
+
+<!--        &lt;!&ndash; Pending Report Submenu &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="menu_report_salewise"-->
+<!--                name="Pending Report"-->
+<!--                parent="report_salewise"-->
+<!--                action="action_salewise"-->
+<!--                sequence="1"/>-->
+
+<!--        &lt;!&ndash; Invoice Reports Submenu &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="menu_invoice_reports"-->
+<!--                name="Invoice Reports"-->
+<!--                parent="report_salewise"-->
+<!--                sequence="2"/>-->
+
+<!--        &lt;!&ndash; Sales Register under Invoice Reports &ndash;&gt;-->
+<!--        <menuitem-->
+<!--                id="menu_sales_register"-->
+<!--                name="Sales Register"-->
+<!--                parent="menu_invoice_reports"-->
+<!--                action="action_invoicewise"-->
+<!--                sequence="1"/>-->
+<!--    </data>-->
+<!--</odoo>-->

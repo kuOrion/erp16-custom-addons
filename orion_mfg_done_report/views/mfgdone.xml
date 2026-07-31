@@ -1,0 +1,117 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash; Tree View &ndash;&gt;-->
+<!--        <record id="view_mfg_done_tree" model="ir.ui.view">-->
+<!--            <field name="name">view.mfg.done.tree</field>-->
+<!--            <field name="model">mrp.production</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Manufactured Goods Report">-->
+<!--                    <field name="name" string="Manufacturing Order"/>-->
+<!--                    <field name="product_id" string="Product"/>-->
+<!--                    <field name="origin" string="Order Reference"/>-->
+<!--                    <field name="product_qty" string="Quantity Produced"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Form View &ndash;&gt;-->
+<!--        <record id="view_mfgdone_form" model="ir.ui.view">-->
+<!--            <field name="name">view.mfgdone.form</field>-->
+<!--            <field name="model">mfgdone</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Manufactured Goods">-->
+<!--                    <group>-->
+<!--                        <separator string="General Information"/>-->
+<!--                        <group>-->
+<!--                            <field name="from_date" required="1"/>-->
+<!--                            <field name="to_date" required="1"/>-->
+
+<!--                        </group>-->
+<!--                        <footer>-->
+<!--                            <button string="Create Report" type="object" name="create_mfgdone_report"-->
+<!--                                    class="btn-primary"/>-->
+<!--                            <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+<!--                        </footer>-->
+<!--                    </group>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Action Window &ndash;&gt;-->
+<!--        <record id="action_mfg_done" model="ir.actions.act_window">-->
+<!--            <field name="name">Manufactured Products</field>-->
+<!--            <field name="res_model">mfgdone</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Menu Item &ndash;&gt;-->
+<!--        <menuitem id="menu_mfg_done" name="Manufactured Report" parent="mrp.menu_mrp_manufacturing"-->
+<!--                  action="action_mfg_done"/>-->
+<!--    </data>-->
+<!--</odoo>-->
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_mfg_done_tree" model="ir.ui.view">
+            <field name="name">view.mfg.done.tree</field>
+            <field name="model">mrp.production</field>
+            <field name="arch" type="xml">
+                <tree string="Manufactured Goods Report">
+                    <field name="name" string="Manufacturing Order"/>
+                    <field name="product_id" string="Product"/>
+                    <field name="origin" string="Order Reference"/>
+                    <field name="product_qty" string="Quantity Produced"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="partner_id" string="Country" widget="many2one_country"/>
+                    <field name="date_finished" string="Completion Date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_mfgdone_form" model="ir.ui.view">
+            <field name="name">view.mfgdone.form</field>
+            <field name="model">mfgdone</field>
+            <field name="arch" type="xml">
+                <form string="Manufactured Goods">
+                    <group>
+                        <separator string="General Information"/>
+                        <group>
+                            <field name="from_date" required="1"/>
+                            <field name="to_date" required="1"/>
+                            <field name="customer_id" domain="[('customer_rank', '>', 0)]"/>
+                            <field name="product_id"/>
+
+                            <field name="order_type" widget="radio"/>
+                        </group>
+                        <!--                        <group>-->
+                        <!--                            <field name="customer_id" domain="[('customer_rank', '>', 0)]"/>-->
+                        <!--                            <field name="product_id"/>-->
+                        <!--                        </group>-->
+                        <footer>
+                            <button string="Create Report" type="object" name="create_mfgdone_report"
+                                    class="btn-primary"/>
+                            <button string="View Orders" type="object" name="create_mfgdone_treeview"
+                                    class="btn-secondary"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action Window -->
+        <record id="action_mfg_done" model="ir.actions.act_window">
+            <field name="name">Manufactured Products</field>
+            <field name="res_model">mfgdone</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_mfg_done" name="Manufactured Report" parent="mrp.menu_mrp_manufacturing"
+                  action="action_mfg_done"/>
+    </data>
+</odoo>

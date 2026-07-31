@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action for Pending Purchase Orders -->
+    <record id="action_pending_purchase_orders" model="ir.actions.act_window">
+        <field name="name">Pending Purchase Orders</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="domain">[('state', '=', 'purchase')]</field>
+        <field name="context">{'search_default_pending': 1}</field>
+    </record>
+
+    <!-- Action for Closed Purchase Orders -->
+    <record id="action_closed_purchase_orders" model="ir.actions.act_window">
+        <field name="name">Closed Purchase Orders</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="domain">[('state', '=', 'done')]</field>
+        <field name="context">{'search_default_done': 1}</field>
+    </record>
+
+    <!-- New Main Menu -->
+    <menuitem
+            id="menu_purchase_reports"
+            name="pending/closeed purchase orders"
+            parent="purchase.menu_purchase_root"
+            sequence="10"/>
+
+    <!-- Submenu for Pending Purchase Orders -->
+    <menuitem
+            id="menu_pending_purchase_orders"
+            name="Pending Purchase Orders"
+            parent="menu_purchase_reports"
+            action="action_pending_purchase_orders"
+            sequence="20"/>
+
+    <!-- Submenu for Closed Purchase Orders -->
+    <menuitem
+            id="menu_closed_purchase_orders"
+            name="Closed Purchase Orders"
+            parent="menu_purchase_reports"
+            action="action_closed_purchase_orders"
+            sequence="30"/>
+</odoo>

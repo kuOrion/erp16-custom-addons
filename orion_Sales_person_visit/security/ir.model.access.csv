@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_sales_visit_user,crm.sales.visit.user,model_crm_sales_visit,,1,1,1,1
+access_crm_opportunity_followup_user,crm.opportunity.followup.user,model_crm_opportunity_followup,,1,1,1,1

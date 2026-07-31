@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="form_inherit_product_attribute" model="ir.ui.view">
+        <field name="name">form.inherit.product.attribute</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='create_variant']" position="after">
+                <group>
+                    <field name="sh_parent_attribute" domain="[('id','!=',id)]" readonly="1"/>
+                    <field name="sh_parent_value" domain="[('attribute_id', '=', sh_parent_attribute)]" readonly="1"/>
+                    <field name="sh_product_tmpl_id"/>
+                    <field name="sh_is_custom_attribute" invisible="1"/>
+                    <!-- <field name="description"/> -->
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='value_ids']/tree/field[@name='name']" position="after">
+                <field name="description" optional="show"/>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

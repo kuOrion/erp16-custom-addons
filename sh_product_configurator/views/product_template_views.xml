@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_only_form_view_inherit_sh_product_configurator" model="ir.ui.view">
+        <field name="name">product.template.only.form.view.inherit.sh.product.configurator</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='attribute_line_ids']/tree/field[@name='attribute_id']" position="attributes">
+                <attribute name="domain">[('id', '=', -1)]</attribute>
+                <attribute name="sortable">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='attribute_line_ids']/tree/field[@name='value_ids']" position="attributes">
+                <attribute name="domain">[('id', '=', -1)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='attribute_line_ids']/tree/field[@name='attribute_id']" position="before">
+                <field name="sequence" widget="handle" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

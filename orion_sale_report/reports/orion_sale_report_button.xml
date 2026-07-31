@@ -1,0 +1,46 @@
+<odoo>
+<!--    <record id="view_order_form_proforma_button" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.form.proforma.button</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//header" position="inside">-->
+<!--                <button name="%(report_orion_sale_proforma)d"-->
+<!--                        type="action"-->
+<!--                        string="Domestic Proforma"-->
+<!--                        class="btn-primary"-->
+<!--                        context="{'active_ids': [active_id]}"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="view_order_form_order_acknowledgment_button" model="ir.ui.view">
+        <field name="name">sale.order.form.order.acknowledgment.button</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(report_orion_sale_acknowledgment)d"
+                        type="action"
+                        string="Order Acknowledgment"
+                        class="btn-primary"
+                        context="{'active_ids': [active_id]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_technical_quotation_button" model="ir.ui.view">
+        <field name="name">sale.order.form.technical.quotation.button</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(report_orion_sale_order)d"
+                        type="action"
+                        string="Technical Quotation"
+                        class="btn-primary"
+                        context="{'active_ids': [active_id]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+<!--<?xml version="1.0"?>-->
+<!--<odoo>-->
+<!--    <record id="seq_sales_visit" model="ir.sequence">-->
+<!--        <field name="name">Sales Visit</field>-->
+<!--        <field name="code">crm.sales.visit</field>-->
+<!--        <field name="prefix">SV/%(year)s/</field>-->
+<!--        <field name="padding">4</field>-->
+<!--    </record>-->
+<!--</odoo>-->
+<odoo>
+    <data noupdate="1">
+        <record id="seq_crm_sales_visit" model="ir.sequence">
+            <field name="name">Sales Visit Sequence</field>
+            <field name="code">crm.sales.visit</field>
+            <field name="prefix">VS</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <record id="seq_crm_opportunity_followup" model="ir.sequence">
+            <field name="name">Opportunity Follow-up Sequence</field>
+            <field name="code">crm.opportunity.followup</field>
+            <field name="prefix">FU</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+</odoo>

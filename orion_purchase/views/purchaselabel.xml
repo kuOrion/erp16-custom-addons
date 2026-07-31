@@ -1,0 +1,105 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+
+
+<!--<odoo>-->
+<!--    <record id="view_purchase_order_form_inherit_orion" model="ir.ui.view">-->
+<!--        <field name="name">purchase.order.form.orion</field>-->
+<!--        <field name="model">purchase.order</field>-->
+<!--        <field name="inherit_id" ref="purchase.purchase_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//notebook" position="inside">-->
+
+<!--                &lt;!&ndash;                <page string="Orion">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <group>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        &lt;!&ndash;                        <field name="orion_field"/>&ndash;&gt;&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <field name="non_standard"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <field name="freight__"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        &lt;!&ndash;                        <field name="freight_taxes"/>&ndash;&gt;&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <field name="freight_tax" widget="many2many_tags"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <field name="insurance__"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <field name="insurance_tax" widget="many2many_tags"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <field name="packing__"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <field name="packch_tax" widget="many2many_tags"/>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </group>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </page>&ndash;&gt;-->
+
+<!--                &lt;!&ndash; Add Orion Tax Terms Tab &ndash;&gt;-->
+<!--                <page string="Orion Tax Terms">-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            &lt;!&ndash;                            <field name="orion_tax_terms"/>&ndash;&gt;-->
+<!--                            <field name="payment_term"/>-->
+<!--                            <field name="mode_of_payment"/>-->
+<!--                            <field name="freight"/>-->
+<!--                            <field name="inspection"/>-->
+<!--                            <field name="insurance"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="delivery"/>-->
+<!--                            <field name="packing"/>-->
+<!--                            <field name="mode_of_transport"/>-->
+<!--                            <field name="note"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </page>-->
+
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->
+
+
+<odoo>
+
+    <record id="view_purchase_order_form_inherit_orion" model="ir.ui.view">
+        <field name="name">purchase.order.form.orion</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+
+                <!-- Parus Tax Terms Tab -->
+                <page string="Orion Tax Terms">
+                    <group>
+                        <group>
+
+                            <field name="payment_term"
+                                   options="{'no_create': False, 'no_open': False}"/>
+
+                            <field name="mode_of_payment_id"
+                                   options="{'no_create': False, 'no_open': False}"/>
+
+                            <field name="freight_id"
+                                   options="{'no_create': False, 'no_open': False}"/>
+
+                            <field name="inspection_id"
+                                   options="{'no_create': False, 'no_open': False}"/>
+
+                            <field name="insurance_id"
+                                   options="{'no_create': False, 'no_open': False}"/>
+
+                        </group>
+
+                        <group>
+
+                            <field name="delivery"/>
+
+                            <field name="packing_id"
+                                   options="{'no_create': False, 'no_open': False}"/>
+
+                            <field name="mode_of_transport_id"
+                                   options="{'no_create': False, 'no_open': False}"/>
+
+                            <field name="note"/>
+
+                        </group>
+                    </group>
+                </page>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

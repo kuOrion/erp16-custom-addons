@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_auto_update_main_mo_sequence" model="ir.cron">
+        <field name="name">Update MO Sequence</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=2, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')" />
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_mrp_production"/>
+        <field name="code">model._auto_update_mo_sequence()</field>
+        <field name="state">code</field>
+    </record>
+
+    <record id="ir_cron_sh_update_internal_transfer_name" model="ir.cron">
+        <field name="name">Update Internal Transfer Name</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=2, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')" />
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="code">model.sh_update_internal_transfer_name()</field>
+        <field name="state">code</field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <menuitem id="menu_mis_reports_root" name="MIS-Reports" sequence="10"/>-->
+<!--    </data>-->
+<!--</odoo>-->
+<odoo>
+    <data>
+        <menuitem id="menu_mis_reports_root"
+                  name="MIS-Reports"
+                  sequence="10"
+                  groups="orion_mis_reports_base.group_mis_reports_user"/>
+    </data>
+</odoo>

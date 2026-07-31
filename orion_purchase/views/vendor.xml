@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action for Vendor Pricelist -->
+    <record id="action_vendor_pricelist" model="ir.actions.act_window">
+        <field name="name">Vendor Pricelist</field>
+        <field name="res_model">product.supplierinfo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Vendor Pricelist Menu -->
+    <menuitem id="menu_vendor_pricelist"
+              name="Vendor Pricelist"
+              parent="purchase.menu_purchase_root"
+              action="action_vendor_pricelist"
+              sequence="15" />
+</odoo>

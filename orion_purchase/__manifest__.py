@@ -1,0 +1,22 @@
+{
+    'name': 'Orion purchase',
+    'version': '1.0',
+    'summary': 'Module to generate labels in purchase',
+    'license': 'LGPL-3',
+    'author': 'Sarthak Samgir',
+    'depends': ['base', 'purchase','stock','mrp'],
+    'data': [
+        'views/purchaselabel.xml',
+        'views/pending_purchase_order.xml',
+        'views/grn.xml',
+        # 'views/vendor.xml',
+        'views/GRN_report.xml',
+        'views/purchase_order_line.xml',
+        # 'views/scraps.xml',
+        'security/ir.model.access.csv',
+        # 'security/purchase_reject_security.xml',
+    ],
+    'sequence': -100,
+    'installable': True,
+    'application': True,
+}

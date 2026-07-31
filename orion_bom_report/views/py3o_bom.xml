@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Definition for Odoo 16 -->
+    <record id="bom_report_action" model="ir.actions.report">
+        <field name="name">BOM Report</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">bom.report</field>
+        <field name="report_name">orion_bom_report.bom_report_template</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_bom_report</field>
+        <field name="py3o_template_fallback">reports/orion_bom_report_odt.odt</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_bom"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

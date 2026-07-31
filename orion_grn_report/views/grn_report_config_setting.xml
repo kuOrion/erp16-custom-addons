@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_inherit_grn" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.grn</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="GRN Settings" data-key="grn_settings" string="GRN Number Settings">
+                        <h2>GRN Configuration</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 o_setting_box">
+                                <div class="o_setting_left_pane" style="width: 150px;">
+                                    <field name="grn_prefix" style="width: 250px;"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="grn_prefix"/>
+                                    <div class="text-muted">
+                                        Set the prefix for GRN numbers (e.g., GRN/, REC/, etc.)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

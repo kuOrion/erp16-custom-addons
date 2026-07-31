@@ -1,0 +1,11 @@
+<odoo>
+    <data noupdate="1">
+
+        <!-- Create Custom Security Group -->
+        <record id="group_mis_reports_user" model="res.groups">
+            <field name="name">MIS Reports User</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+
+    </data>
+</odoo>

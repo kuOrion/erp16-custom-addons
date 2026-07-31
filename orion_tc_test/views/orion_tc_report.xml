@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<odoo>-->
+<!--    <record id="test_certificate_report" model="ir.actions.report">-->
+<!--        <field name="name">Test Certificate</field>-->
+<!--        <field name="type">ir.actions.report</field>-->
+<!--        <field name="model">stock.picking</field>-->
+<!--        <field name="report_name">orion_tc_test.testing</field>-->
+<!--        <field name="report_type">py3o</field>-->
+<!--        <field name="py3o_filetype">odt</field>-->
+<!--        <field name="module">orion_tc_test</field>-->
+<!--        <field name="py3o_template_fallback">reports/test_certi.odt</field>-->
+<!--        <field name="binding_model_id" ref="stock.model_stock_picking"/>-->
+<!--        <field name="binding_type">report</field>-->
+<!--    </record>-->
+<!--</odoo>-->
+
+<odoo>
+    <record id="test_certificate_report" model="ir.actions.report">
+        <field name="name">Test Certificate</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">stock.picking</field>
+        <field name="report_name">orion_tc_test.testing</field>
+        <field name="report_type">py3o</field>
+
+        <!-- Change this line -->
+        <field name="py3o_filetype">odt</field>
+
+        <field name="module">orion_tc_test</field>
+        <field name="py3o_template_fallback">reports/test_certi.odt</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

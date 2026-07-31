@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard View -->
+    <record id="view_mrp_bom_duplicate_wizard_form" model="ir.ui.view">
+        <field name="name">mrp.bom.duplicate.wizard.form</field>
+        <field name="model">mrp.bom.duplicate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirm BOM Duplication">
+                <div class="alert alert-info" role="alert">
+                    <field name="message" nolabel="1"/>
+                </div>
+                <group>
+                    <field name="bom_id" invisible="1"/>
+                    <field name="product_name" invisible="1"/>
+                </group>
+                <footer>
+                    <button string="Confirm" name="action_confirm_duplicate"
+                            type="object" class="btn-primary"/>
+                    <button string="Cancel" name="action_cancel"
+                            type="object" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Duplicate BOM -->
+    <record id="action_mrp_bom_duplicate_confirm" model="ir.actions.server">
+        <field name="name">BOM Duplicate</field>
+        <field name="model_id" ref="mrp.model_mrp_bom"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_bom"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.action_duplicate_bom()
+        </field>
+    </record>
+
+</odoo>

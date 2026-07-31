@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pdi_to_fg,access.pdi.to.fg,model_pdi_to_fg,stock.group_stock_user,1,1,1,1
+access_pdi_to_fg_transfer,access.pdi.to.fg.transfer,model_pdi_to_fg_transfer,stock.group_stock_user,1,1,1,1
+access_fg_to_stock,access.fg.to.stock,model_fg_to_stock,stock.group_stock_user,1,1,1,1
+access_fg_to_stock_transfer,access.fg.to.stock.transfer,model_fg_to_stock_transfer,stock.group_stock_user,1,1,1,1

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Definition for Purchase RFQ -->
+    <record id="report_orion_purchase_order" model="ir.actions.report">
+        <field name="name">Orion Purchase Quotation</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">purchase.order</field>
+        <field name="report_name">orion_purchase_report.report_purchase_order</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_purchase_report</field>
+        <field name="py3o_template_fallback">reports/orion_purchase_report.odt</field> <!-- Ensure correct path -->
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Server Action to trigger the Purchase report -->
+    <record id="action_generate_purchase_py3o_report_action" model="ir.actions.server">
+        <field name="name">Generate Py3O Purchase RFQ Report</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_generate_py3o_purchase_report()</field>
+    </record>
+</odoo>
+
+

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mfgdone_user,mfgdone user access,model_mfgdone,,1,0,0,0
+access_mfgdone_manager,mfgdone manager access,model_mfgdone,,1,1,1,1
+access_mrp_production_user,mrp.production user access,model_mrp_production,,1,0,0,0
+access_mrp_production_manager,mrp.production manager access,model_mrp_production,,1,1,1,1

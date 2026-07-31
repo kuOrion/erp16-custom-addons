@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_crm_sales_visit_root"
+              name="Sales Visits"
+              parent="crm.crm_menu_root"
+              sequence="2"/>
+
+    <menuitem id="menu_crm_sales_visit"
+              name="Sales Visits"
+              parent="menu_crm_sales_visit_root"
+              action="action_crm_sales_visit"
+              sequence="1"/>
+
+    <menuitem id="menu_crm_opportunity_followup"
+              name="Opportunity Follow-ups"
+              parent="menu_crm_sales_visit_root"
+              action="action_crm_opportunity_followup"
+              sequence="2"/>
+
+</odoo>

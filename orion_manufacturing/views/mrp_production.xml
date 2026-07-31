@@ -1,0 +1,91 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash; Tree View &ndash;&gt;-->
+<!--        <record id="view_tree_orion_mrp" model="ir.ui.view">-->
+<!--            <field name="name">mrp.production.tree</field>-->
+<!--            <field name="model">mrp.production</field>-->
+<!--            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='product_id']" position="after">-->
+<!--                    <field name="product_speci"/>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='date_planned_start']" position="after">-->
+<!--                    <field name="order_id"/>  &lt;!&ndash; Ensure this is order_id and not sale_order_reference &ndash;&gt;-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Form View &ndash;&gt;-->
+<!--        <record id="view_form_orion_mrp" model="ir.ui.view">-->
+<!--            <field name="name">mrp.production.form</field>-->
+<!--            <field name="model">mrp.production</field>-->
+<!--            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//notebook" position="inside">-->
+<!--                    <page string="Orion">-->
+<!--                        <group>-->
+<!--                            <field name="oayn"/>-->
+<!--                            <field name="order_id"/>  &lt;!&ndash; Changed from sale_order_reference &ndash;&gt;-->
+<!--                            <field name="product_oa_id"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="o_product_qty"/>-->
+<!--                            <field name="order_sch_date"/>-->
+<!--                            <field name="partner_id"/>-->
+<!--                            <field name="product_def_code"/>-->
+<!--                            <field name="product_speci"/>-->
+<!--                        </group>-->
+<!--                    </page>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->
+<odoo>
+    <data>
+        <!-- Tree View - No changes needed here -->
+        <record id="view_tree_orion_mrp" model="ir.ui.view">
+            <field name="name">mrp.production.tree</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="product_speci"/>
+                </xpath>
+                <xpath expr="//field[@name='date_planned_start']" position="after">
+                    <field name="order_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Form View - Adding Save and Edit buttons -->
+        <record id="view_form_orion_mrp" model="ir.ui.view">
+            <field name="name">mrp.production.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+
+                <!-- Original Orion tab content -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Orion">
+                        <group>
+                            <field name="oayn"/>
+                            <field name="order_id"/>
+                            <field name="product_oa_id"/>
+                        </group>
+                        <group>
+                            <field name="o_product_qty"/>
+                            <field name="order_sch_date"/>
+<!--                            <field name="partner_id" readonly="1"/>-->
+                            <field name="customer_id" readonly="1"/>
+
+                            <field name="product_def_code"/>
+                            <field name="product_speci"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_configuration_form_inherit" model="ir.ui.view">
+        <field name="name">product.product.configuration.form.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Locate the position where you want to add the field -->
+            <xpath expr="//field[@name='name']" position="after">
+                <!-- Add the Internal Reference field -->
+                <field name="default_code"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

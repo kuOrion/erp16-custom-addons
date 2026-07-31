@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+sh_product_configurator.access_sh_product_variant_spec_line,access_sh_product_variant_spec_line,sh_product_configurator.model_sh_product_variant_spec_line,base.group_user,1,1,1,1
+sh_product_configurator.access_sh_product_variant_extra_line,access_sh_product_variant_extra_line,sh_product_configurator.model_sh_product_variant_extra_line,base.group_user,1,1,1,1

@@ -1,0 +1,13 @@
+
+<odoo>
+    <record id="py3o_mis_quotation" model="ir.actions.report">
+        <field name="name">MIS Quotation Report</field>
+        <field name="model">quotation.report.wizard</field>
+        <field name="report_name">orion_mis_quotation.py3o_mis_quotation</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_mis_quotation</field>
+        <field name="py3o_template_fallback">reports/py3o_mis_quotation.odt</field>
+        <field name="print_report_name">'Quotation Report - %s' % object.from_date</field>
+    </record>
+</odoo>

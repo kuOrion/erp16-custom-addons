@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_line_schedule,sale.order.line.schedule,model_sale_order_line_schedule,,1,1,1,1
+access_sale_order_linedev_user,access_sale_order_linedev_user,model_sale_order_linedev,base.group_user,1,1,1,1
+access_sale_order_lineacc_user,access_sale_order_lineacc_user,model_sale_order_lineacc,base.group_user,1,1,1,1

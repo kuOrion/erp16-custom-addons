@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Product Attribute Value Form View -->
+    <record id="product_attribute_value_form_view" model="ir.ui.view">
+        <field name="name">product.attribute.value.form</field>
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Product Attribute Form Inheritance -->
+    <record id="product_attribute_form_inherit_view" model="ir.ui.view">
+        <field name="name">product.attribute.form.inherit</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='value_ids']/tree/field[@name='name']" position="after">
+                <field name="description"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product Attribute Value Tree View -->
+    <record id="view_product_attribute_value_tree" model="ir.ui.view">
+        <field name="name">product.attribute.value.tree</field>
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <tree string="Attribute Values" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

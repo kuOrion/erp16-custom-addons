@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_orion_mis_reports_salewise,access.orion.mis.reports.salewise,model_orion_mis_reports_salewise,base.group_user,1,1,1,1

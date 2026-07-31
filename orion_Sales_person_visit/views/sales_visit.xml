@@ -1,0 +1,458 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<odoo>-->
+
+<!--    &lt;!&ndash; Sales Visit Tree View &ndash;&gt;-->
+<!--    <record id="view_crm_sales_visit_tree" model="ir.ui.view">-->
+<!--        <field name="name">crm.sales.visit.tree</field>-->
+<!--        <field name="model">crm.sales.visit</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree>-->
+<!--                <field name="name"/>-->
+<!--                <field name="visit_date"/>-->
+<!--                <field name="user_id"/>-->
+<!--                <field name="partner_id"/>-->
+<!--                <field name="visit_type"/>-->
+<!--                <field name="outcome"/>-->
+<!--                <field name="lead_count"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Sales Visit Form View &ndash;&gt;-->
+<!--    <record id="view_crm_sales_visit_form" model="ir.ui.view">-->
+<!--        <field name="name">crm.sales.visit.form</field>-->
+<!--        <field name="model">crm.sales.visit</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Sales Visit">-->
+<!--                <header>-->
+<!--                    <button name="action_create_lead"-->
+<!--                            type="object"-->
+<!--                            string="Create Opportunity"-->
+<!--                            class="oe_highlight"/>-->
+<!--                </header>-->
+
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="name"/>-->
+<!--                            <field name="user_id"/>-->
+<!--                            <field name="visit_date"/>-->
+<!--                            <field name="visit_type"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="partner_id"/>-->
+<!--                            <field name="outcome"/>-->
+<!--                            <field name="next_followup_date"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+
+<!--                    <notebook>-->
+<!--                        <page string="Visit Details">-->
+<!--                            <group>-->
+<!--                                <field name="purpose"/>-->
+<!--                                <field name="discussion"/>-->
+<!--                            </group>-->
+<!--                        </page>-->
+
+<!--                        <page string="Generated Opportunities">-->
+<!--                            <field name="lead_ids">-->
+<!--                                <tree>-->
+<!--                                    <field name="name"/>-->
+<!--                                    <field name="handling_type"/>-->
+<!--                                    <field name="dealer_id"/>-->
+<!--                                    <field name="stage_id"/>-->
+<!--                                    <field name="expected_revenue"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--                    </notebook>-->
+<!--                </sheet>-->
+
+<!--                <div class="oe_chatter">-->
+<!--                    <field name="message_follower_ids"/>-->
+<!--                    <field name="activity_ids"/>-->
+<!--                    <field name="message_ids"/>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Extended CRM Lead Form View &ndash;&gt;-->
+<!--    <record id="view_crm_lead_form_inherit" model="ir.ui.view">-->
+<!--        <field name="name">crm.lead.form.inherit</field>-->
+<!--        <field name="model">crm.lead</field>-->
+<!--        <field name="inherit_id" ref="crm.crm_lead_view_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//header" position="inside">-->
+<!--                <button name="action_make_call"-->
+<!--                        type="object"-->
+<!--                        string="Log Call"-->
+<!--                        attrs="{'invisible': [('handling_type', '!=', 'internal')]}"/>-->
+<!--                &lt;!&ndash;                <button name="action_create_quote"&ndash;&gt;-->
+<!--                &lt;!&ndash;                        type="object"&ndash;&gt;-->
+<!--                &lt;!&ndash;                        string="Create Quote"&ndash;&gt;-->
+<!--                &lt;!&ndash;                        class="oe_highlight"&ndash;&gt;-->
+<!--                &lt;!&ndash;                        attrs="{'invisible': [('handling_type', '!=', 'internal')]}"/>&ndash;&gt;-->
+<!--                <button name="action_make_call"-->
+<!--                        type="object"-->
+<!--                        string="Log Call"-->
+<!--                        class="btn-primary"/>-->
+
+
+<!--                <button name="action_view_followups"-->
+<!--                        type="object"-->
+<!--                        string="Follow-ups"-->
+<!--                        attrs="{'invisible': [('handling_type', '!=', 'dealer')]}"/>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//field[@name='user_id']" position="after">-->
+<!--                <field name="sales_visit_id"/>-->
+<!--                <field name="handling_type"/>-->
+<!--                <field name="dealer_id"-->
+<!--                       attrs="{'invisible': [('handling_type', '!=', 'dealer')], 'required': [('handling_type', '=', 'dealer')]}"/>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//notebook" position="inside">-->
+<!--                <page string="Follow-ups" attrs="{'invisible': [('handling_type', '!=', 'dealer')]}">-->
+<!--                    <field name="followup_ids">-->
+<!--                        <tree>-->
+<!--                            <field name="name"/>-->
+<!--                            <field name="followup_date"/>-->
+<!--                            <field name="followup_type"/>-->
+<!--                            <field name="status"/>-->
+<!--                            <field name="next_followup_date"/>-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--                </page>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Opportunity Follow-up Tree View &ndash;&gt;-->
+<!--    <record id="view_crm_opportunity_followup_tree" model="ir.ui.view">-->
+<!--        <field name="name">crm.opportunity.followup.tree</field>-->
+<!--        <field name="model">crm.opportunity.followup</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree decoration-success="status=='completed'" decoration-muted="status=='cancelled'">-->
+<!--                <field name="name"/>-->
+<!--                <field name="lead_id"/>-->
+<!--                <field name="followup_date"/>-->
+<!--                <field name="followup_type"/>-->
+<!--                <field name="user_id"/>-->
+<!--                <field name="status"/>-->
+<!--                <field name="next_followup_date"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Opportunity Follow-up Form View &ndash;&gt;-->
+<!--    <record id="view_crm_opportunity_followup_form" model="ir.ui.view">-->
+<!--        <field name="name">crm.opportunity.followup.form</field>-->
+<!--        <field name="model">crm.opportunity.followup</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Follow-up">-->
+<!--                <header>-->
+<!--                    <button name="action_mark_completed"-->
+<!--                            type="object"-->
+<!--                            string="Mark Completed"-->
+<!--                            class="oe_highlight"-->
+<!--                            attrs="{'invisible': [('status', '!=', 'pending')]}"/>-->
+<!--                    <button name="action_mark_cancelled"-->
+<!--                            type="object"-->
+<!--                            string="Cancel"-->
+<!--                            attrs="{'invisible': [('status', '!=', 'pending')]}"/>-->
+<!--                    <field name="status" widget="statusbar"/>-->
+<!--                </header>-->
+
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="name"/>-->
+<!--                            <field name="lead_id"/>-->
+<!--                            <field name="user_id"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="followup_date"/>-->
+<!--                            <field name="followup_type"/>-->
+<!--                            <field name="next_followup_date"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+
+<!--                    <notebook>-->
+<!--                        <page string="Details">-->
+<!--                            <group>-->
+<!--                                <field name="description"/>-->
+<!--                                <field name="next_action"/>-->
+<!--                                <field name="dealer_feedback"/>-->
+<!--                            </group>-->
+<!--                        </page>-->
+<!--                    </notebook>-->
+<!--                </sheet>-->
+
+<!--                <div class="oe_chatter">-->
+<!--                    <field name="message_follower_ids"/>-->
+<!--                    <field name="activity_ids"/>-->
+<!--                    <field name="message_ids"/>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Follow-up Action &ndash;&gt;-->
+<!--    <record id="action_crm_opportunity_followup" model="ir.actions.act_window">-->
+<!--        <field name="name">Opportunity Follow-ups</field>-->
+<!--        <field name="res_model">crm.opportunity.followup</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Sales Visit Action &ndash;&gt;-->
+<!--    <record id="action_crm_sales_visit" model="ir.actions.act_window">-->
+<!--        <field name="name">Sales Visits</field>-->
+<!--        <field name="res_model">crm.sales.visit</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Partner Form View - Add Dealer Checkbox &ndash;&gt;-->
+<!--    <record id="view_partner_form_inherit_dealer" model="ir.ui.view">-->
+<!--        <field name="name">res.partner.form.inherit.dealer</field>-->
+<!--        <field name="model">res.partner</field>-->
+<!--        <field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='company_type']" position="after">-->
+<!--                <field name="is_dealer"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--</odoo>-->
+
+<odoo>
+
+    <!-- Sales Visit Tree View -->
+    <record id="view_crm_sales_visit_tree" model="ir.ui.view">
+        <field name="name">crm.sales.visit.tree</field>
+        <field name="model">crm.sales.visit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="visit_date"/>
+                <field name="user_id"/>
+                <field name="partner_id"/>
+                <field name="visit_type"/>
+                <field name="outcome"/>
+                <field name="lead_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Sales Visit Form View -->
+    <record id="view_crm_sales_visit_form" model="ir.ui.view">
+        <field name="name">crm.sales.visit.form</field>
+        <field name="model">crm.sales.visit</field>
+        <field name="arch" type="xml">
+            <form string="Sales Visit">
+                <header>
+                    <button name="action_create_lead"
+                            type="object"
+                            string="Create Opportunity"
+                            class="oe_highlight"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="visit_date"/>
+                            <field name="visit_type"/>
+                        </group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="outcome"/>
+                            <field name="next_followup_date"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Visit Details">
+                            <group>
+                                <field name="purpose"/>
+                                <field name="discussion"/>
+                            </group>
+                        </page>
+
+                        <page string="Generated Opportunities">
+                            <field name="lead_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="handling_type"/>
+                                    <field name="dealer_id"/>
+<!--                                    <field name="stage_id"/>-->
+                                    <field name="expected_revenue"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Extended CRM Lead Form View -->
+    <record id="view_crm_lead_form_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <!-- Log Call button visible for BOTH internal and dealer -->
+                <button name="action_make_call"
+                        type="object"
+                        string="Log Call"/>
+                <button name="action_view_followups"
+                        type="object"
+                        string="Follow-ups"
+                        attrs="{'invisible': [('handling_type', '!=', 'dealer')]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="sales_visit_id"/>
+                <field name="handling_type"/>
+                <field name="dealer_id"
+                       attrs="{'invisible': [('handling_type', '!=', 'dealer')], 'required': [('handling_type', '=', 'dealer')]}"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <!-- Follow-ups tab: only visible for dealer handling -->
+                <page string="Follow-ups" attrs="{'invisible': [('handling_type', '!=', 'dealer')]}">
+                    <field name="followup_ids">
+                        <tree>
+                            <field name="name"/>
+                            <field name="followup_date"/>
+                            <field name="followup_type"/>
+                            <field name="status"/>
+                            <field name="next_followup_date"/>
+                        </tree>
+                    </field>
+                </page>
+
+                <!-- Call Logs tab: only visible for internal handling -->
+                <page string="Call Logs" attrs="{'invisible': [('handling_type', '!=', 'internal')]}">
+                    <field name="followup_ids" domain="[('followup_type', '=', 'call')]">
+                        <tree>
+                            <field name="name"/>
+                            <field name="followup_date"/>
+                            <field name="user_id"/>
+                            <field name="description"/>
+                            <field name="status"/>
+                            <field name="next_followup_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Opportunity Follow-up Tree View -->
+    <record id="view_crm_opportunity_followup_tree" model="ir.ui.view">
+        <field name="name">crm.opportunity.followup.tree</field>
+        <field name="model">crm.opportunity.followup</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="status=='completed'" decoration-muted="status=='cancelled'">
+                <field name="name"/>
+                <field name="lead_id"/>
+                <field name="followup_date"/>
+                <field name="followup_type"/>
+                <field name="user_id"/>
+                <field name="status"/>
+                <field name="next_followup_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Opportunity Follow-up Form View -->
+    <record id="view_crm_opportunity_followup_form" model="ir.ui.view">
+        <field name="name">crm.opportunity.followup.form</field>
+        <field name="model">crm.opportunity.followup</field>
+        <field name="arch" type="xml">
+            <form string="Follow-up">
+                <header>
+                    <button name="action_mark_completed"
+                            type="object"
+                            string="Mark Completed"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('status', '!=', 'pending')]}"/>
+                    <button name="action_mark_cancelled"
+                            type="object"
+                            string="Cancel"
+                            attrs="{'invisible': [('status', '!=', 'pending')]}"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="lead_id"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group>
+                            <field name="followup_date"/>
+                            <field name="followup_type"/>
+                            <field name="next_followup_date"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Details">
+                            <group>
+                                <field name="description"/>
+                                <field name="next_action"/>
+                                <field name="dealer_feedback"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Follow-up Action -->
+    <record id="action_crm_opportunity_followup" model="ir.actions.act_window">
+        <field name="name">Opportunity Follow-ups</field>
+        <field name="res_model">crm.opportunity.followup</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Sales Visit Action -->
+    <record id="action_crm_sales_visit" model="ir.actions.act_window">
+        <field name="name">Sales Visits</field>
+        <field name="res_model">crm.sales.visit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Partner Form View - Add Dealer Checkbox -->
+    <record id="view_partner_form_inherit_dealer" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.dealer</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_type']" position="after">
+                <field name="is_dealer"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

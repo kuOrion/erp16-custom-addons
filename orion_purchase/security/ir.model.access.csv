@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_move_custom,access_stock_move_custom,model_stock_move,,1,1,1,1
+access_purchase_order_line_custom,purchase.order.line.custom,model_purchase_order_line,,1,1,1,1
+access_purchase_mode_payment,purchase.mode.payment,model_purchase_mode_payment,,1,1,1,1
+access_purchase_freight_type,purchase.freight.type,model_purchase_freight_type,,1,1,1,1
+access_purchase_inspection,purchase.inspection,model_purchase_inspection,,1,1,1,1
+access_purchase_insurance,purchase.insurance,model_purchase_insurance,,1,1,1,1
+access_purchase_packing,purchase.packing,model_purchase_packing,,1,1,1,1
+access_purchase_transport_mode,purchase.transport.mode,model_purchase_transport_mode,,1,1,1,1
+access_purchase_delivery,purchase.delivery,model_purchase_delivery,,1,1,1,1

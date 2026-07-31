@@ -1,0 +1,273 @@
+<!--<odoo>-->
+<!--    &lt;!&ndash; Repair Order Form View Inherit &ndash;&gt;-->
+<!--    <record id="view_repair_order_form_dispatch_inherit" model="ir.ui.view">-->
+<!--        <field name="name">repair.order.form.dispatch.inherit</field>-->
+<!--        <field name="model">repair.order</field>-->
+<!--        <field name="inherit_id" ref="repair.view_repair_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            &lt;!&ndash; Add Location Status in header &ndash;&gt;-->
+<!--            <xpath expr="//header/field[@name='state']" position="before">-->
+<!--                <field name="location_status" widget="statusbar"-->
+<!--                       statusbar_visible="draft,dispatched,received,returned"/>-->
+<!--            </xpath>-->
+
+<!--            &lt;!&ndash; Add buttons in header after state field &ndash;&gt;-->
+<!--            <xpath expr="//header/field[@name='state']" position="after">-->
+<!--                &lt;!&ndash; Hidden fields needed for button visibility &ndash;&gt;-->
+<!--                <field name="return_dispatch_date" invisible="1"/>-->
+<!--                <field name="invoice_id" invisible="1"/>-->
+
+<!--                <button name="action_set_dispatched"-->
+<!--                        string="Mark as Dispatched"-->
+<!--                        type="object"-->
+<!--                        class="btn-primary"-->
+<!--                        attrs="{'invisible': ['|', ('location_status', '!=', 'draft'), ('dispatch_date', '!=', False)]}"/>-->
+<!--                <button name="action_receive_in_warehouse"-->
+<!--                        string="Receive in Warehouse"-->
+<!--                        type="object"-->
+<!--                        class="btn-success"-->
+<!--                        attrs="{'invisible': ['|', ('location_status', '!=', 'dispatched'), ('warehouse_received_date', '!=', False)]}"/>-->
+<!--                <button name="action_transfer_to_dispatch"-->
+<!--                        string="Transfer to Dispatch"-->
+<!--                        type="object"-->
+<!--                        class="btn-warning"-->
+<!--                        confirm="This will transfer the product back to dispatch and create an invoice. Continue?"-->
+<!--                        attrs="{'invisible': ['|', '|', ('location_status', '!=', 'received'), ('state', 'not in', ['done', 'ready']), ('return_dispatch_date', '!=', False)]}"/>-->
+<!--            </xpath>-->
+
+<!--            &lt;!&ndash; Add Location Tracking Group &ndash;&gt;-->
+<!--            <xpath expr="//notebook" position="inside">-->
+<!--                <page string="Location Tracking" name="location_tracking">-->
+<!--                    <group>-->
+<!--                        <group string="Dispatch Information">-->
+<!--                            <field name="dispatch_location_id"-->
+<!--                                   options="{'no_create': True, 'no_open': True}"/>-->
+<!--                            <field name="dispatch_date" readonly="1"/>-->
+<!--                        </group>-->
+<!--                        <group string="Warehouse Information">-->
+<!--                            <field name="warehouse_location_id"-->
+<!--                                   options="{'no_create': True, 'no_open': True}"/>-->
+<!--                            <field name="warehouse_received_date" readonly="1"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+
+<!--                    &lt;!&ndash; Return Information &ndash;&gt;-->
+<!--                    <group string="Return Information" attrs="{'invisible': [('return_dispatch_date', '=', False)]}">-->
+<!--                        <group>-->
+<!--                            <field name="return_dispatch_date" string="Returned to Dispatch On" readonly="1"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+
+<!--                    &lt;!&ndash; Location Movement Timeline &ndash;&gt;-->
+<!--                    <group string="Movement Timeline" attrs="{'invisible': [('dispatch_date', '=', False)]}">-->
+<!--                        <label for="dispatch_date" string="Timeline"/>-->
+<!--                        <div>-->
+<!--                            <div attrs="{'invisible': [('dispatch_date', '=', False)]}">-->
+<!--                                <strong>1. Dispatched:</strong>-->
+<!--                                <field name="dispatch_date" readonly="1" nolabel="1"/>-->
+<!--                            </div>-->
+<!--                            <div attrs="{'invisible': [('warehouse_received_date', '=', False)]}">-->
+<!--                                <strong>2. Received in Warehouse:</strong>-->
+<!--                                <field name="warehouse_received_date" readonly="1" nolabel="1"/>-->
+<!--                            </div>-->
+<!--                            <div attrs="{'invisible': [('return_dispatch_date', '=', False)]}">-->
+<!--                                <strong>3. Returned to Dispatch:</strong>-->
+<!--                                <field name="return_dispatch_date" readonly="1" nolabel="1"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--            </xpath>-->
+
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Repair Order Tree View - Add Location Status Column &ndash;&gt;-->
+<!--    <record id="view_repair_order_tree_dispatch_inherit" model="ir.ui.view">-->
+<!--        <field name="name">repair.order.tree.dispatch.inherit</field>-->
+<!--        <field name="model">repair.order</field>-->
+<!--        <field name="inherit_id" ref="repair.view_repair_order_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='state']" position="after">-->
+<!--                <field name="location_status" widget="badge"-->
+<!--                       decoration-info="location_status == 'draft'"-->
+<!--                       decoration-warning="location_status == 'dispatched'"-->
+<!--                       decoration-success="location_status == 'received'"-->
+<!--                       decoration-primary="location_status == 'returned'"/>-->
+<!--                <field name="dispatch_date" optional="show"/>-->
+<!--                <field name="warehouse_received_date" optional="show"/>-->
+<!--                <field name="return_dispatch_date" optional="hide"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Search View - Create New Simple Search View &ndash;&gt;-->
+<!--    <record id="view_repair_order_search_dispatch" model="ir.ui.view">-->
+<!--        <field name="name">repair.order.search.dispatch</field>-->
+<!--        <field name="model">repair.order</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <search string="Repair Orders Location Search">-->
+<!--                <field name="name" string="Repair Reference"/>-->
+<!--                <field name="product_id"/>-->
+<!--                <field name="partner_id"/>-->
+<!--                <field name="dispatch_location_id"/>-->
+<!--                <field name="warehouse_location_id"/>-->
+<!--                <field name="location_status"/>-->
+
+<!--                <separator/>-->
+<!--                <filter string="Draft" name="draft_status"-->
+<!--                        domain="[('location_status', '=', 'draft')]"/>-->
+<!--                <filter string="Dispatched" name="dispatched"-->
+<!--                        domain="[('location_status', '=', 'dispatched')]"/>-->
+<!--                <filter string="Received in Warehouse" name="received"-->
+<!--                        domain="[('location_status', '=', 'received')]"/>-->
+<!--                <filter string="Returned to Dispatch" name="returned"-->
+<!--                        domain="[('location_status', '=', 'returned')]"/>-->
+
+<!--                <separator/>-->
+<!--                <filter string="Dispatched This Month" name="dispatched_this_month"-->
+<!--                        domain="[('dispatch_date', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>-->
+<!--                <filter string="Received This Month" name="received_this_month"-->
+<!--                        domain="[('warehouse_received_date', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>-->
+<!--                <filter string="Returned This Month" name="returned_this_month"-->
+<!--                        domain="[('return_dispatch_date', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>-->
+
+<!--                <separator/>-->
+<!--                <filter string="Ready for Return" name="ready_for_return"-->
+<!--                        domain="[('location_status', '=', 'received'), ('state', 'in', ['done', 'ready'])]"/>-->
+
+<!--                <group expand="0" string="Group By">-->
+<!--                    <filter string="Location Status" name="group_location_status"-->
+<!--                            context="{'group_by': 'location_status'}"/>-->
+<!--                    <filter string="Dispatch Location" name="group_dispatch_location"-->
+<!--                            context="{'group_by': 'dispatch_location_id'}"/>-->
+<!--                    <filter string="Warehouse Location" name="group_warehouse_location"-->
+<!--                            context="{'group_by': 'warehouse_location_id'}"/>-->
+<!--                    <filter string="Product" name="group_product"-->
+<!--                            context="{'group_by': 'product_id'}"/>-->
+<!--                    <filter string="Partner" name="group_partner"-->
+<!--                            context="{'group_by': 'partner_id'}"/>-->
+<!--                </group>-->
+<!--            </search>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Add action for Repair Orders with Location Tracking &ndash;&gt;-->
+<!--    <record id="action_repair_order_location_tracking" model="ir.actions.act_window">-->
+<!--        <field name="name">Repair Orders - Location Tracking</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">repair.order</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="search_view_id" ref="view_repair_order_search_dispatch"/>-->
+<!--        <field name="context">{'search_default_dispatched': 1}</field>-->
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_smiling_face">-->
+<!--                Create a repair order with location tracking-->
+<!--            </p>-->
+<!--            <p>-->
+<!--                Track your repair orders from dispatch location to warehouse location and back with complete date-->
+<!--                tracking.-->
+<!--            </p>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Add menu item &ndash;&gt;-->
+<!--    <menuitem id="menu_repair_location_tracking"-->
+<!--              name="Location Tracking"-->
+<!--              parent="repair.menu_repair_order"-->
+<!--              action="action_repair_order_location_tracking"-->
+<!--              sequence="20"/>-->
+
+<!--</odoo>-->
+
+
+<odoo>
+    <!-- Form View -->
+    <record id="view_repair_order_form_dispatch" model="ir.ui.view">
+        <field name="name">repair.order.form.dispatch</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add Status Bar -->
+            <xpath expr="//header/field[@name='state']" position="before">
+                <field name="location_status" widget="statusbar"
+                       statusbar_visible="draft,dispatched,received,returned,received_dispatch,completed"/>
+            </xpath>
+
+            <!-- Add Buttons -->
+            <xpath expr="//header/field[@name='state']" position="after">
+                <field name="return_dispatch_date" invisible="1"/>
+                <field name="received_in_dispatch_date" invisible="1"/>
+
+                <button name="action_set_dispatched"
+                        string="Mark as Dispatched"
+                        type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': [('location_status', '!=', 'draft')]}"/>
+
+                <button name="action_receive_in_warehouse"
+                        string="Receive in Warehouse"
+                        type="object"
+                        class="btn-success"
+                        attrs="{'invisible': [('location_status', '!=', 'dispatched')]}"/>
+
+                <button name="action_transfer_to_dispatch"
+                        string="Transfer to Dispatch"
+                        type="object"
+                        class="btn-warning"
+                        attrs="{'invisible': [('location_status', '!=', 'received')]}"/>
+
+                <button name="action_receive_in_dispatch"
+                        string="Receive in Dispatch"
+                        type="object"
+                        class="btn-info"
+                        attrs="{'invisible': [('location_status', '!=', 'returned')]}"/>
+
+                <button name="action_create_invoice"
+                        string="Create Invoice"
+                        type="object"
+                        class="btn-primary"
+                        confirm="This will create the invoice. Continue?"
+                        attrs="{'invisible': [('location_status', '!=', 'received_dispatch')]}"/>
+            </xpath>
+
+            <!-- Hide standard invoice button -->
+            <xpath expr="//button[@name='action_repair_invoice_create']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- Add Location Tab -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Location Tracking">
+                    <group>
+                        <group string="Dispatch">
+                            <field name="dispatch_location_id"/>
+                            <field name="dispatch_date" readonly="1"/>
+                            <field name="received_in_dispatch_date" readonly="1"/>
+                        </group>
+                        <group string="Warehouse">
+                            <field name="warehouse_location_id"/>
+                            <field name="warehouse_received_date" readonly="1"/>
+                            <field name="return_dispatch_date" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_repair_order_tree_dispatch" model="ir.ui.view">
+        <field name="name">repair.order.tree.dispatch</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="location_status"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

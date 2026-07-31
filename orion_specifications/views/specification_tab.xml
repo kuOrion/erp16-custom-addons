@@ -1,0 +1,193 @@
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <record id="view_product_product_form_inherit_specification" model="ir.ui.view">-->
+<!--            <field name="name">product.product.form.inherit.specification</field>-->
+<!--            <field name="model">product.product</field>-->
+<!--            <field name="inherit_id"-->
+<!--                   ref="product.product_normal_form_view"/> &lt;!&ndash; Ensure this is the correct parent view &ndash;&gt;-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//notebook" position="inside">-->
+<!--                    <page name="specification_page" string="Specifications">-->
+<!--                        &lt;!&ndash;                        <group>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            <group>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="model_name"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="range_code"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="on_off_diff"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="differential_temp"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="repeatability"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            </group>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            <group>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="pressure_housing"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="model_enhancements"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="wetted_parts"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="other_wetted_parts"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="protective_cap"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="calibration"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="capillary"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                <field name="bulb_connection"/>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            </group>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                    </group>&ndash;&gt;-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="model_name"/>-->
+<!--                                <field name="bulletin_no"/>-->
+<!--                                <field name="short_name"/>-->
+<!--                                &lt;!&ndash;                                <field name="range_code"/>&ndash;&gt;-->
+<!--                                <field name="range"/>-->
+<!--                                <field name="on_off_diff"/>-->
+<!--                                &lt;!&ndash;                                <field name="differential_temp"/>&ndash;&gt;-->
+<!--                                <field name="diff_temp"/>-->
+<!--                                &lt;!&ndash;                                <field name="max_pressure_temp"/>&ndash;&gt;-->
+<!--                                <field name="repeatability"/>-->
+<!--                                <field name="photo_jpg"/>-->
+<!--                                <field name="pressure_port"/>-->
+<!--                                <field name="pressure_housing"/>-->
+<!--                                <field name="cable_entry"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                &lt;!&ndash;                                <field name="model_enhancements"/>&ndash;&gt;-->
+<!--                                <field name="model_enhance"/>-->
+<!--                                &lt;!&ndash;                                <field name="enclosure"/>&ndash;&gt;-->
+<!--                                <field name="range_scale"/>-->
+<!--                                <field name="switch_type"/>-->
+<!--                                <field name="base_type"/>-->
+<!--                                <field name="diaphragm"/>-->
+<!--                                <field name="micro_switch"/>-->
+<!--                                <field name="wetted_parts"/>-->
+<!--                                <field name="other_wetted_parts"/>-->
+<!--                                <field name="pro_cap"/>-->
+<!--                                &lt;!&ndash;                                <field name="protective_cap"/>&ndash;&gt;-->
+<!--                                <field name="calibration"/>-->
+<!--                                <field name="capillary"/>-->
+<!--                                <field name="bulb_connection"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+<!--                    </page>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->
+
+
+<!--<odoo>-->
+<!--    <record id="view_product_product_form_inherit_specification" model="ir.ui.view">-->
+<!--        <field name="name">product.product.form.inherit.specification</field>-->
+<!--        <field name="model">product.product</field>-->
+<!--        <field name="inherit_id"-->
+<!--               ref="product.product_normal_form_view"/> &lt;!&ndash; Ensure this is the correct parent view &ndash;&gt;-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//notebook" position="inside">-->
+<!--                <page name="specification_page" string="Specifications">-->
+
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="model_name"/>-->
+<!--                            <field name="bulletin_no"/>-->
+<!--                            <field name="short_name"/>-->
+<!--                            <field name="range"/>  &lt;!&ndash; Correct field name &ndash;&gt;-->
+<!--                            <field name="on_off_diff"/>-->
+<!--                            <field name="diff_temp"/>-->
+<!--                            <field name="max_pressure_temp"/>-->
+<!--                            <field name="repeatability"/>-->
+<!--                            <field name="photo_jpg"/>-->
+<!--                            <field name="pressure_port"/>-->
+<!--                            <field name="pressure_housing"/>-->
+<!--                            <field name="cable_entry"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="model_enhance"/>-->
+<!--                            <field name="enclosure"/>-->
+<!--                            <field name="range_scale"/>-->
+<!--                            <field name="switch_type"/>-->
+<!--                            <field name="base_type"/>-->
+<!--                            <field name="diaphragm"/>-->
+<!--                            <field name="micro_switch"/>-->
+<!--                            <field name="wetted_parts"/>-->
+<!--                            <field name="other_wetted_parts"/>-->
+<!--                            <field name="pro_cap"/>-->
+<!--                            <field name="calibration"/>-->
+<!--                            <field name="capillary"/>-->
+<!--                            <field name="bulb_connection"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Product variant tree view if needed &ndash;&gt;-->
+<!--    <record id="view_orion_spec_tree" model="ir.ui.view">-->
+<!--        <field name="name">view.orion_spec.tree</field>-->
+<!--        <field name="model">product.product</field>-->
+<!--        <field name="inherit_id" ref="product.product_product_tree_view"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="name" position="after">-->
+<!--                <field name="range" optional="show"/>  &lt;!&ndash; Correct field name &ndash;&gt;-->
+<!--                <field name="model_name" optional="show"/>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Product variant search view if needed &ndash;&gt;-->
+<!--    <record id="view_orion_spec_search" model="ir.ui.view">-->
+<!--        <field name="name">view.orion_spec.search</field>-->
+<!--        <field name="model">product.product</field>-->
+<!--        <field name="inherit_id" ref="product.product_search_form_view"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="name" position="after">-->
+<!--                <field name="range"/>  &lt;!&ndash; Correct field name &ndash;&gt;-->
+<!--                <field name="model_name"/>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->
+
+<odoo>
+    <data>
+        <record id="view_product_product_form_inherit_specification" model="ir.ui.view">
+            <field name="name">product.product.form.inherit.specification</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id"
+                   ref="product.product_normal_form_view"/> <!-- Ensure this is the correct parent view -->
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page name="specification_page" string="Specifications">
+
+                        <group>
+                            <group>
+                                <field name="model_name"/>
+                                <field name="bulletin_no"/>
+                                <field name="short_name"/>
+                                <field name="range_code"/>
+                                <field name="on_off_diff"/>
+                                <field name="differential_temp"/>
+                                <field name="max_pressure_temp"/>
+                                <field name="repeatability"/>
+                                <field name="photo_jpg"/>
+                                <field name="pressure_port"/>
+                                <field name="pressure_housing"/>
+                                <field name="cable_entry"/>
+                            </group>
+                            <group>
+                                <field name="model_enhancements"/>
+                                <field name="enclosure"/>
+                                <field name="range_scale"/>
+                                <field name="switch_type"/>
+                                <field name="base_type"/>
+                                <field name="diaphragm"/>
+                                <field name="micro_switch"/>
+                                <field name="wetted_parts"/>
+                                <field name="other_wetted_parts"/>
+                                <field name="protective_cap"/>
+                                <field name="calibration"/>
+                                <field name="capillary"/>
+                                <field name="bulb_connection"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

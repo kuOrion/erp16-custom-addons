@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_order_form_tax_auto" model="ir.ui.view">
+        <field name="name">sale.order.form.tax.auto</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Ensure our onchange is triggered when fiscal position changes -->
+            <field name="fiscal_position_id" position="attributes">
+                <attribute name="on_change">1</attribute>
+                <attribute name="force_save">1</attribute>
+                <attribute name="attrs">{'invisible': [('state', 'in', ['done', 'cancel'])]}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

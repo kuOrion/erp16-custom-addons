@@ -1,0 +1,49 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <record id="view_res_bank_form_inherited" model="ir.ui.view">-->
+<!--            <field name="name">res.bank.form.inherited</field>-->
+<!--            <field name="model">res.bank</field>-->
+<!--            <field name="inherit_id" ref="base.view_res_bank_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='active']" position="after">-->
+<!--                    <group>-->
+<!--                        <group name="bank_details_left">-->
+<!--                            <field name="account_name"/>-->
+<!--                            <field name="account_number"/>-->
+<!--                            <field name="swift_code"/>-->
+<!--                        </group>-->
+<!--                        <group name="bank_details_right">-->
+<!--                            <field name="ifsc_code"/>-->
+<!--                            <field name="phone"/>-->
+<!--                            <field name="fax"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->
+<odoo>
+    <data>
+        <record id="view_res_bank_form_inherited" model="ir.ui.view">
+            <field name="name">res.bank.form.inherited</field>
+            <field name="model">res.bank</field>
+            <field name="inherit_id" ref="base.view_res_bank_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <group>
+                        <group>
+                            <field name="account_name" style ="width:250px"/>
+                            <field name="account_number" style ="width:250px"/>
+                            <field name="swift_code" style ="width:250px"/>
+                            <field name="ifsc_code" style ="width:250px"/>
+                            <field name="phone" style ="width:250px"/>
+                            <field name="fax" style ="width:250px"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

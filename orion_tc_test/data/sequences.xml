@@ -1,0 +1,20 @@
+<!-- data/sequence_data.xml -->
+<odoo>
+    <data noupdate="1">
+        <record id="seq_test_certificate" model="ir.sequence">
+            <field name="name">Test Certificate</field>
+            <field name="code">test.certificate</field>
+            <field name="prefix">TC/</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="use_date_range">False</field>
+        </record>
+
+        <!-- Default configuration parameter for prefix -->
+        <record id="default_test_certificate_prefix" model="ir.config_parameter">
+            <field name="key">orion_test_certificate.test_certificate_prefix</field>
+            <field name="value">TC/</field>
+        </record>
+    </data>
+</odoo>

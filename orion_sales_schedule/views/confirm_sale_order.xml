@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action for Confirmed Sale Orders -->
+    <record id="action_confirmed_sale_orders" model="ir.actions.act_window">
+        <field name="name">Confirmed Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state', '=', 'sale')]</field>
+        <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No confirmed sale orders found
+            </p>
+        </field>
+    </record>
+
+    <!-- Action for Unconfirmed Sale Orders -->
+    <record id="action_unconfirmed_sale_orders" model="ir.actions.act_window">
+        <field name="name">Unconfirmed Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state', '=', 'draft')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No draft sale orders found
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <!--    <menuitem id="menu_sale_order_status"-->
+    <!--              name="Sale Order Status"-->
+    <!--              parent="sale.sale_menu_root"-->
+    <!--              sequence="1"-->
+    <!--    />-->
+    <menuitem id="menu_sale_order_status"
+              name="Sale Order Status"
+              parent="sale.sale_menu_root"
+              sequence="10"
+    />
+
+
+    <menuitem id="menu_confirmed_sale_orders"
+              name="Confirmed Orders"
+              parent="menu_sale_order_status"
+              action="action_confirmed_sale_orders"
+              sequence="1"/>
+
+    <menuitem id="menu_unconfirmed_sale_orders"
+              name="Not Confirmed Orders"
+              parent="menu_sale_order_status"
+              action="action_unconfirmed_sale_orders"
+              sequence="2"/>
+</odoo>

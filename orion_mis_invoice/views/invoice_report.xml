@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <record id="py3o_invoicewise" model="ir.actions.report">-->
+<!--            <field name="name">Invoicewise Report</field>-->
+<!--            <field name="model">orion_mis_invoice.invoicewise</field>-->
+<!--            <field name="report_name">orion_mis_invoice.py3o_invoicewise</field>-->
+<!--            <field name="report_type">py3o</field>-->
+<!--            <field name="report_file">orion_mis_invoice/reports/invoice_report.odt</field>-->
+<!--            <field name="binding_model_id" ref="model_orion_mis_invoice_invoicewise"/>-->
+<!--            <field name="binding_type">report</field>-->
+<!--            <field name="print_report_name">'Invoice Report - %s' % (object.partner_id.name or 'All Partners')</field>-->
+<!--            <field name="py3o_filetype">odt</field>  &lt;!&ndash; Required field for output format &ndash;&gt;-->
+<!--            <field name="py3o_template_fallback">orion_mis_invoice/reports/invoice_report.odt</field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <record id="invoice_report" model="ir.actions.report">-->
+<!--            <field name="name">Invoicewise Report</field>-->
+<!--            <field name="model">orion_mis_invoice.invoicewise</field>-->
+<!--            <field name="report_type">py3o</field>-->
+<!--            <field name="report_name">orion_mis_invoice.invoice_report</field>-->
+<!--            <field name="report_file">orion_mis_invoice/reports/invoice_report.odt</field>-->
+<!--            <field name="binding_type">report</field>-->
+<!--            <field name="py3o_filetype">odt</field>-->
+<!--            <field name="py3o_template_fallback">orion_mis_invoice/reports/invoice_report.odt</field>-->
+<!--            &lt;!&ndash; Add this to ensure the template is loaded &ndash;&gt;-->
+<!--            <field name="print_report_name">'Invoice Report - %s' % object.partner_id.name if object.partner_id else-->
+<!--                'Invoice Report'-->
+<!--            </field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash; Report action definition &ndash;&gt;-->
+<!--        <record id="invoice_report" model="ir.actions.report">-->
+<!--            <field name="name">Invoice Report</field>-->
+<!--            <field name="model">orion_mis_invoice.invoicewise</field>-->
+<!--            <field name="report_type">py3o</field>-->
+<!--            <field name="report_name">orion_mis_invoice.invoice_report</field>-->
+<!--            <field name="report_file">orion_mis_invoice/invoice_report.odt</field>-->
+<!--            <field name="print_report_name">'Invoice Report - %s' % object.partner_id.name if object.partner_id else-->
+<!--                'Invoice Report'-->
+<!--            </field>-->
+<!--            <field name="binding_model_id" ref="model_orion_mis_invoice_invoicewise"/>-->
+<!--            <field name="binding_type">report</field>-->
+<!--            <field name="py3o_filetype">odt</field>-->
+<!--            <field name="py3o_template_fallback">orion_mis_invoice/invoice_report.odt</field>-->
+<!--            <field name="attachment">'invoice_report_%s' % object.id</field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->
+
+
+<odoo>
+    <record id="invoice_report" model="ir.actions.report">
+        <field name="name">Py3o Sales-OA Pending Report</field>
+        <field name="model">orion_mis_invoice.invoicewise</field>
+        <field name="report_name">orion_mis_invoice.invoice_report</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_mis_invoice</field>
+        <!--        <field name="py3o_template_fallback">reports/sales_invoice.odt</field>-->
+        <field name="py3o_template_fallback">reports/sold_out.odt</field>
+        <!--        <field name="print_report_name">'Invoice Report - %s' % (object.partner_id.name if object.partner_id else-->
+        <!--            'Unknown')-->
+        <!--        </field>-->
+        <field name="print_report_name">
+            'MIS_Invoice_report_%s_TO_%s' % (
+            object.from_date.strftime("%d_%b_%Y").lower(),
+            object.to_date.strftime("%d_%b_%Y").lower()
+            )
+        </field>
+
+    </record>
+
+</odoo>

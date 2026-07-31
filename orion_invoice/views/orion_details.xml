@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<odoo>-->
+<!--    <record id="view_move_form_orion_details" model="ir.ui.view">-->
+<!--        <field name="name">account.move.form.orion.details</field>-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="inherit_id" ref="account.view_move_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            &lt;!&ndash; Locate the notebook element to add a new tab &ndash;&gt;-->
+<!--            <xpath expr="//notebook" position="inside">-->
+<!--                <page string="Orion Details">-->
+<!--                    <group>-->
+<!--                        <field name="x_orion_reference"/>-->
+<!--                        <field name="x_orion_description"/>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->
+<odoo>
+    <record id="view_move_form_orion_details" model="ir.ui.view">
+        <field name="name">account.move.form.orion.details</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Orion Details">
+                    <group>
+                        <group>
+                            <!--                            <field name="x_gross_weight"/>-->
+                            <!--                            <field name="x_net_weight"/>-->
+                            <field name="x_invoice_issue_date"/>
+                            <field name="x_invoice_removal_date"/>
+                        </group>
+                    </group>
+
+
+                    <group>
+                        <group>
+                            <field name="x_mcci_report"/>
+                            <field name="x_docket_number"/>
+                            <field name="x_cash_on_delivery"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Orion Export Details">
+                    <group>
+                        <group>
+                            <field name="x_vessel_flight_no"/>
+                            <field name="x_final_destination"/>
+                            <field name="x_other_reference"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="x_apply_igst"/>
+                            <field name="x_igst_percentage"/>
+                            <field name="x_port_of_loading"/>
+
+                            <field name="currency_rate"/>
+                            <!--                            <field name="x_currency_rate"/>-->
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

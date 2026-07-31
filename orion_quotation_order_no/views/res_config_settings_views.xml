@@ -1,0 +1,57 @@
+<odoo>
+    <record id="view_res_config_settings_orion_custom_sale" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.orion.custom.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('app_settings_block')]" position="after">
+                <div class="app_settings_block" data-string="Sales Numbering" data-key="sales_numbering"
+                     string="Quotation and Sale Order Numbering">
+                    <h2>Custom Sale Number Prefixes</h2>
+                    <div class="row mt16 o_settings_container">
+
+                        <!-- Domestic Quotation Prefix -->
+                        <div class="col-12 o_setting_box">
+                            <div class="o_setting_left_pane" style="width: 150px;">
+                                <field name="quotation_prefix" placeholder="e.g. KQ"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="quotation_prefix"/>
+                                <div class="text-muted">
+                                    Set prefix for domestic quotations (e.g. KQ)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Export Quotation Prefix -->
+                        <div class="col-12 o_setting_box">
+                            <div class="o_setting_left_pane" style="width: 150px;">
+                                <field name="export_quotation_prefix" placeholder="e.g. KQ/EX"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="export_quotation_prefix"/>
+                                <div class="text-muted">
+                                    Set prefix for export quotations (e.g. KQ/EX)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shared Order Prefix -->
+                        <div class="col-12 o_setting_box">
+                            <div class="o_setting_left_pane" style="width: 150px;">
+                                <field name="order_prefix" placeholder="e.g. OA"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="order_prefix"/>
+                                <div class="text-muted">
+                                    Set shared prefix for all sale orders (e.g. OA)
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

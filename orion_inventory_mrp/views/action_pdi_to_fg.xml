@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Server Action for PDI to FG Transfer -->
+        <record model="ir.actions.server" id="action_pdi_to_fg_transfer">
+            <field name="name">PDI to FG Transfer</field>
+            <field name="model_id" ref="stock.model_stock_quant"/>
+            <field name="binding_model_id" ref="stock.model_stock_quant"/>
+            <field name="state">code</field>
+            <field name="code">action = record.action_pdi_to_fg_transfer()</field>
+        </record>
+
+        <!-- Server Action for FG to Stock Transfer -->
+        <record model="ir.actions.server" id="action_fg_to_stock_transfer">
+            <field name="name">FG to Stock Transfer</field>
+            <field name="model_id" ref="stock.model_stock_quant"/>
+            <field name="binding_model_id" ref="stock.model_stock_quant"/>
+            <field name="state">code</field>
+            <field name="code">action = record.action_fg_to_stock_transfer()</field>
+        </record>
+    </data>
+</odoo>

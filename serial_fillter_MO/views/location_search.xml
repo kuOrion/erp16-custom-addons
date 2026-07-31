@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_production_lot_search_inherit_location" model="ir.ui.view">
+        <field name="name">stock.lot.search.location</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.search_product_lot_filter"/>
+        <field name="arch" type="xml">
+
+            <!-- Append our filters inside the search element -->
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter
+                        string="In WH/PDI"
+                        name="filter_location_pdi"
+                        domain="[('current_location_id.complete_name', 'ilike', 'WH/PDI')]"
+                />
+                <filter
+                        string="In WH/FG"
+                        name="filter_location_fg"
+                        domain="[('current_location_id.complete_name', 'ilike', 'WH/FG')]"
+                />
+                <filter
+                        string="In Any Internal Location"
+                        name="filter_in_stock"
+                        domain="[('current_location_id.usage', '=', 'internal')]"
+                />
+                <separator/>
+                <filter
+                        string="Current Location"
+                        name="groupby_location"
+                        context="{'group_by': 'current_location_id'}"
+                />
+                <filter
+                        string="Manufacturing Order"
+                        name="groupby_mo"
+                        context="{'group_by': 'production_id'}"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

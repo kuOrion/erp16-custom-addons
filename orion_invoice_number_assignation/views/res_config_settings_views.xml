@@ -1,0 +1,134 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+
+<!--    <record id="res_config_settings_view_invoice_prefix" model="ir.ui.view">-->
+<!--        <field name="name">res.config.settings.view.invoice.prefix</field>-->
+<!--        <field name="model">res.config.settings</field>-->
+<!--        <field name="inherit_id" ref="account.res_config_settings_view_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//h2[text()='Customer Invoices']" position="after">-->
+
+<!--                <h2>Invoice Number Format</h2>-->
+
+<!--                <div class="row mt16 o_settings_container" id="invoice_number_format_setting">-->
+
+<!--                    &lt;!&ndash; Invoice Prefix &ndash;&gt;-->
+<!--                    <div class="col-12 col-lg-6 o_setting_box">-->
+<!--                        <div class="o_setting_left_pane"/>-->
+<!--                        <div class="o_setting_right_pane">-->
+<!--                            <label for="invoice_number_prefix" string="Invoice Number Prefix"/>-->
+<!--                            <div class="text-muted">-->
+<!--                                Prefix added before the invoice number.-->
+<!--                                Example: prefix <b>A26/-</b> with padding 5 → <b>0001</b>.-->
+<!--                                Leave blank to use Odoo default.-->
+<!--                            </div>-->
+<!--                            <div class="content-group mt8">-->
+<!--                                <div class="row">-->
+<!--                                    <field name="invoice_number_prefix"-->
+<!--                                           class="col-8"-->
+<!--                                           placeholder="e.g. A26/"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    &lt;!&ndash; Invoice Number Padding &ndash;&gt;-->
+<!--                    <div class="col-12 col-lg-6 o_setting_box">-->
+<!--                        <div class="o_setting_left_pane"/>-->
+<!--                        <div class="o_setting_right_pane">-->
+<!--                            <label for="invoice_number_padding" string="Number Padding (digits)"/>-->
+<!--                            <div class="text-muted">-->
+<!--                                Zero-pad the numeric part to this many digits.-->
+<!--                                Example: padding 5 → 00001, 00002 …-->
+<!--                            </div>-->
+<!--                            <div class="content-group mt8">-->
+<!--                                <div class="row">-->
+<!--                                    <field name="invoice_number_padding"-->
+<!--                                           class="col-4"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+<!--                </div>-->
+
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--</odoo>-->
+
+<odoo>
+
+    <record id="res_config_settings_view_invoice_prefix"
+            model="ir.ui.view">
+        <field name="name">
+            res.config.settings.view.invoice.prefix
+        </field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id"
+               ref="account.res_config_settings_view_form"/>
+
+        <field name="arch" type="xml">
+
+            <xpath expr="//h2[text()='Customer Invoices']"
+                   position="after">
+
+                <h2>Invoice Number Format</h2>
+
+                <div class="row mt16 o_settings_container"
+                     id="invoice_number_format_setting">
+
+                    <!-- Invoice Prefix -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="invoice_number_prefix"/>
+                            <div class="text-muted">
+                                Prefix added before the invoice number.
+                                Example: A26/0001
+                            </div>
+                            <div class="content-group mt8">
+                                <field name="invoice_number_prefix"
+                                       placeholder="e.g. A26/"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Invoice Padding -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="invoice_number_padding"/>
+                            <div class="text-muted">
+                                Number of digits used in the sequence.
+                            </div>
+                            <div class="content-group mt8">
+                                <field name="invoice_number_padding"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Next Invoice Number -->
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <label for="next_invoice_counter"/>
+                            <div class="text-muted">
+                                Set the next invoice number manually.
+                            </div>
+                            <div class="content-group mt8">
+                                <field name="next_invoice_counter"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

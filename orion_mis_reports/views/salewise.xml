@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--<odoo>-->
+<!--    <record id="report_py3o_salewise" model="ir.actions.report">-->
+<!--        <field name="name">Py3o Sales-OA Pending Report</field>-->
+<!--        <field name="model">orion_mis_reports.salewise</field>-->
+<!--        <field name="report_name">mis_salewise.py3o_salewise</field>-->
+<!--        <field name="report_type">py3o</field>-->
+<!--        <field name="py3o_filetype">odt</field>-->
+<!--        <field name="module">orion_mis_reports</field>-->
+<!--        <field name="py3o_template_fallback">reports/py3o_salewise.odt</field>-->
+<!--    </record>-->
+
+<!--</odoo>-->
+
+<!--<odoo>-->
+<!--    <record id="py3o_salewise" model="ir.actions.report">-->
+<!--        <field name="name">Py3o Sales-OA Pending Report</field>-->
+<!--        <field name="model">orion_mis_reports.salewise</field>-->
+<!--        <field name="report_name">orion_mis_reports.py3o_salewise</field>-->
+<!--        <field name="report_type">py3o</field>-->
+<!--        <field name="py3o_filetype">odt</field>-->
+<!--        <field name="module">orion_mis_reports</field>-->
+<!--        <field name="py3o_template_fallback">reports/py3o_salewise.odt</field>-->
+<!--    </record>-->
+<!--</odoo>-->
+<odoo>
+    <record id="py3o_salewise" model="ir.actions.report">
+        <field name="name">Py3o Sales-OA Pending Report</field>
+        <field name="model">orion_mis_reports.salewise</field>
+        <field name="report_name">orion_mis_reports.py3o_salewise</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_mis_reports</field>
+        <field name="py3o_template_fallback">reports/pending_order_report.odt</field>
+        <!--        <field name="print_report_name">'Sales Report - %s' % object.from_date</field>-->
+        <field name="print_report_name">
+            'OA_Pending_report_%s_TO_%s' % (
+            object.from_date.strftime("%d_%b_%Y").lower(),
+            object.to_date.strftime("%d_%b_%Y").lower()
+            )
+        </field>
+
+    </record>
+
+</odoo>

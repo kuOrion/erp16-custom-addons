@@ -1,0 +1,29 @@
+<!--<odoo>-->
+
+<!--    <record id="action_report_fgtostock" model="ir.actions.report">-->
+<!--    <field name="name">FG to Stock Report</field>-->
+<!--    <field name="type">ir.actions.report</field>-->
+<!--    <field name="model">fgtostock.report</field>-->
+<!--    <field name="report_name">orion_fg_to_stock.action_report_fgtostock</field>-->
+<!--    <field name="report_type">py3o</field>-->
+<!--    <field name="py3o_filetype">odt</field>-->
+<!--    <field name="module">orion_fg_to_stock</field>-->
+<!--    <field name="py3o_template_fallback">reports/py3o_fgtostock.odt</field>-->
+<!--    <field name="binding_model_id" ref="mrp.model_mrp_bom"/>-->
+<!--    <field name="binding_type">report</field>-->
+<!--</odoo>-->
+<odoo>
+    <record id="action_report_fgtostock" model="ir.actions.report">
+        <field name="name">FG to Stock Report</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">fgtostock.report</field>
+        <field name="report_name">orion_fg_to_stock.action_report_fgtostock</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_fg_to_stock</field>
+        <field name="py3o_template_fallback">reports/py3o_fgtostock.odt</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_bom"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

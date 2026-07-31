@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_picking_form_inherit_tc_certificate_button" model="ir.ui.view">
+        <field name="name">stock.picking.form.tc.certificate.button</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(test_certificate_report)d"
+                        type="action"
+                        string="Test Certificate"
+                        class="btn btn-secondary"
+                        context="{'py3o_mimetype': 'odt'}"
+                        groups="stock.group_stock_user"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

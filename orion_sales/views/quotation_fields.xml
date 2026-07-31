@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_order_form_orion_terms" model="ir.ui.view">
+        <field name="name">sale.order.form.orion.terms</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Orion">
+                    <group>
+                        <group>
+                            <field name="customer_po_number" string="Customer PO Number"/>
+                            <field name="customer_po_date" string="Customer PO Date"/>
+                            <!--                            <field name="transporter" string="Transporter"/>-->
+                            <!--                            <field name="terms_and_conditions" string="Terms and Conditions"/>-->
+                            <field name="transporter" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="terms_and_conditions" options="{'no_create': False, 'no_open': False}"/>
+
+                            <field name="reference_type" string="Reference Type"/>
+                            <field name="invoice_types" string="Invoice Types"/>
+                            <field name="insurance_terms" string="Insurance Terms"/>
+                            <field name="test_certificate" string="Test Certificate"/>
+                            <field name="dispatch_instructions" string="Dispatch Instructions"/>
+                            <field name="_note" string="note"/>
+
+                        </group>
+
+                        <group>
+                            <field name="quotation_subject" string="Quotation Subject"/>
+                            <field name="bid_details" string="BID Details"/>
+                            <field name="your_reference" string="Your Reference"/>
+                            <field name="our_reference" string="Our Reference"/>
+                        </group>
+
+                    </group>
+                </page>
+                <page string="Orion-Tax Terms">
+                    <group>
+                        <group>
+                            <field name="price_terms" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="delivery" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="third_party_inspection" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="bank_charges" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="mode_of_transport" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="other_term" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="bank_name" string="Bank Name"/>
+                            <field name="no_of_packages" string="Number of Packages"/>
+                        </group>
+                        <group>
+                            <field name="validity" options="{'no_create': False, 'no_open': False}"
+                                   string="Validity"/>
+                            <field name="accessories" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="p_and_f" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="warranty" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="freight_terms" string="Freight Terms"/>
+                            <field name="pre_carriage" options="{'no_create': False, 'no_open': False}"/>
+                            <field name="port_of_discharge" string="Port of Discharge"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

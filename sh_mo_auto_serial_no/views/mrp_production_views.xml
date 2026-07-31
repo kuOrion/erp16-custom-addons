@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_mo_auto_serial_no_mrp_production_form_view_inherited" model="ir.ui.view">
+        <field name="name">sh.mrp.production.inherit.view.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="sh_auto_assign_serial_no" invisible='1'/>
+                <field name="sh_serial_no_type"  attrs="{'required': [('sh_auto_assign_serial_no', '=', True)],
+                'invisible':[('sh_auto_assign_serial_no','=',False)]}"/>
+                <field name="sh_produce_qty" attrs="{'required': [('sh_auto_assign_serial_no', '=', True)],
+                'invisible':[('sh_auto_assign_serial_no','=',False)]}"/>
+                <field name="sh_remaining_qty" readonly='1' attrs="{'invisible':[('sh_auto_assign_serial_no','=',False)]}"/>
+                <field name="sh_main_mo" invisible='1'/>
+                <field name="sh_total_qty" invisible='1'/>
+                <field name="sh_partially_done" invisible='1'/>
+                <field name="sh_is_serial_btn_invisible" invisible='1'/>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="after"> 
+                <button name="action_assign_serial_number"  string="Assign Serial No" 
+                attrs="{'invisible': ['|','|','|',('sh_main_mo', '==', False),('state', 'in', ['draft','cancel','done']),('sh_is_serial_btn_invisible', '==', True),('sh_auto_assign_serial_no', '=', False)]}" type="object" class="oe_highlight"/>
+            </xpath>
+            
+            <xpath expr="//notebook" position="inside">
+                <page string="Finished Product" name="sh_finished_product">
+                    <field name="sh_finished_product_ids" >
+                        <tree create="false" delete="false" edit="false">
+                            <field name="product_id" />
+                            <field name="sh_product_qty" />
+                            <button name="sh_show_details_action" type="object" title="Show Details" icon="fa-list"/>                        
+                        </tree>
+
+                    </field>
+                </page>
+            </xpath>
+
+               
+            <xpath expr="//button[@name='button_mark_done'][1]" position="attributes"> 
+                <attribute name="attrs">{'invisible': [
+                    '|','|','|', 
+                    ('state', 'in', ('draft', 'cancel', 'done', 'to_close')), 
+                    ('qty_producing', '=', 0), 
+                    ('move_raw_ids', '!=', []),
+                    ('sh_auto_assign_serial_no', '=', True)]}
+                    </attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_mark_done'][2]" position="attributes"> 
+                <attribute name="attrs">{'invisible': [
+                    '|', '|','|',
+                     ('state', 'in', ('draft', 'cancel', 'done', 'to_close')), 
+                     ('qty_producing', '=', 0), 
+                     ('move_raw_ids', '=', []),
+                     ('sh_auto_assign_serial_no', '=', True)]}
+                    </attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_mark_done'][3]" position="attributes"> 
+                <attribute name="attrs">{'invisible': [
+                        '|',
+                        ('sh_auto_assign_serial_no', '=', True),
+                        '|',
+                        ('move_raw_ids', '=', []),
+                        '&amp;',
+                        '|',
+                        ('state', 'not in', ('confirmed', 'progress')),
+                        ('qty_producing', '!=', 0),
+                        ('state', '!=', 'to_close')]}
+                    </attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_mark_done'][4]" position="attributes"> 
+                <attribute name="attrs">{'invisible':[
+                        '|',
+                        ('sh_auto_assign_serial_no', '=', True),
+                        '|',
+                        ('move_raw_ids', '!=', []),
+                        '&amp;',
+                        '|',
+                        ('state', 'not in', ('confirmed', 'progress')),
+                        ('qty_producing', '!=', 0),
+                        ('state', '!=', 'to_close')
+                        ]}
+                    </attribute>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="attributes">
+                <attribute name="statusbar_visible">draft,confirmed,progress,partially_done,done</attribute>
+
+            </xpath>
+           
+        </field>
+    </record>
+
+    <record id="sh_mo_auto_serial_no_mrp_view_mrp_production_filter_inherited" model="ir.ui.view">
+        <field name="name">sh.mrp.production.inherit.view.search</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='activities_exception']" position="after">
+                <filter string="Main MO" name="sh_main_mo"
+                domain="[('sh_main_mo', '=', True)]"/>
+            </xpath>
+            <xpath expr="//filter[@name='todo']" position="attributes">
+                <attribute name="domain">[('state', 'in', ['draft', 'confirmed', 'progress', 'partially_done'])]</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='filter_to_close']" position="after">
+                <filter string="Partially Done" name="filter_done" domain="[('state', '=', 'partially_done')]"/>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="sh_mo_auto_serial_no_mrp_mrp_production_tree_view_inherited" model="ir.ui.view">
+        <field name="name">sh.mrp.production.inherit.view.tree</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+        <field name="arch" type="xml">
+        
+            <xpath expr="//field[@name='state']" position="attributes">
+                <attribute name="decoration-success">state in ('done', 'to_close', 'partially_done')</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="mrp.mrp_production_action" model="ir.actions.act_window">
+        <field name="name">Manufacturing Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.production</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="context">{'search_default_todo': True, 'default_company_id': allowed_company_ids[0],'search_default_sh_main_mo':True}</field>
+        <field name="domain">[('picking_type_id.active', '=', True)]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            No manufacturing order found. Let's create one.
+          </p><p>
+            Consume <a name="%(product.product_template_action)d" type='action' tabindex="-1">components</a> and build finished products using <a name="%(mrp.mrp_bom_form_action)d" type='action' tabindex="-1">bills of materials</a>
+          </p>
+        </field>
+    </record>
+
+</odoo>

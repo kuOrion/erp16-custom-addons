@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_validity_option_user,access.sale.validity.option.user,model_sale_validity_option,base.group_user,1,1,1,1
+access_accessories_option_user,sale.accessories.option,model_sale_accessories_option,base.group_user,1,1,1,1
+access_pandf_option_user,sale.pandf.option,model_sale_pandf_option,base.group_user,1,1,1,1
+access_warranty_option_user,sale.warranty.option,model_sale_warranty_option,base.group_user,1,1,1,1
+access_price_term_option,sale.price.term.option,model_sale_price_term_option,base.group_user,1,1,1,1
+access_delivery_option,sale.delivery.option,model_sale_delivery_option,base.group_user,1,1,1,1
+access_tpi_option,sale.third.party.inspection.option,model_sale_third_party_inspection_option,base.group_user,1,1,1,1
+access_bank_charges_option,sale.bank.charges.option,model_sale_bank_charges_option,base.group_user,1,1,1,1
+access_mode_transport_option,sale.mode.transport.option,model_sale_mode_transport_option,base.group_user,1,1,1,1
+access_other_term_option_user,sale.other.term.option,model_sale_other_term_option,base.group_user,1,1,1,1
+access_pre_carriage_option_user,sale.pre.carriage.option,model_sale_pre_carriage_option,base.group_user,1,1,1,1
+access_transporter_option_user,sale.transporter.option,model_sale_transporter_option,base.group_user,1,1,1,1
+access_terms_conditions_option_user,sale.terms.conditions.option,model_sale_terms_conditions_option,base.group_user,1,1,1,1

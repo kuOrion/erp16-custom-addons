@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+
+        <record id="py3o_mfgdone" model="ir.actions.report">
+            <field name="name">Manufactured Products Report</field>
+            <field name="type">ir.actions.report</field>
+            <field name="model">mfgdone</field> <!-- Change to the relevant model -->
+            <field name="report_name">orion_manufacturing_done_report.py3o_mfgdone</field>
+            <field name="report_type">py3o</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="module">orion_manufacturing_done_report</field>
+            <field name="py3o_template_fallback">reports/py3o_mfgdone.odt</field> <!-- New ODT template -->
+            <field name="print_report_name">
+                'MO_Complete_report_%s_TO_%s' % (
+                object.from_date.strftime("%d_%b_%Y").lower(),
+                object.to_date.strftime("%d_%b_%Y").lower()
+                )
+            </field>
+
+            <!--            <field name="binding_model_id" ref="mfgdone.mfgdone_model_view"/>-->
+            <!--            <field name="binding_type">report</field>-->
+        </record>
+    </data>
+</odoo>

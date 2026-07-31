@@ -1,0 +1,26 @@
+<odoo>
+
+    <!-- Product Product (Variant) Tree View -->
+    <record id="view_product_product_tree_inherit_n_spec" model="ir.ui.view">
+        <field name="name">product.product.tree.inherit.n.specification</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lst_price']" position="after">
+                <field name="n_specification_desc" optional="show" string="N Specification"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product Product (Variant) Form View -->
+    <record id="view_product_product_form_inherit_n_spec" model="ir.ui.view">
+        <field name="name">product.product.form.inherit.n.specification</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lst_price']" position="after">
+                <field name="n_specification_desc" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

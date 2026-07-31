@@ -1,0 +1,23 @@
+<odoo>
+    <record id="report_orion_purchase_grn" model="ir.actions.report">
+        <field name="name">Orion Purchase GRN Report</field>
+        <field name="model">stock.picking</field>
+        <field name="report_name">orion_grn_report.testing_grn</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_grn_report</field>
+        <field name="py3o_template_fallback">reports/testing_grn.odt</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'GRN - %s' % object.name</field>
+    </record>
+
+    <record id="action_generate_purchase_grn_py3o_report_action" model="ir.actions.server">
+        <field name="name">Generate Py3O Purchase GRN Report</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_generate_py3o_grn_report()</field>
+    </record>
+</odoo>
+

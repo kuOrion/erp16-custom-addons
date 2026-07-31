@@ -1,0 +1,14 @@
+<odoo>
+    <record id="action_report_packing_list" model="ir.actions.report">
+        <field name="name">Tax Domestic Invoice</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">account.move</field> <!-- Change to the relevant model -->
+        <field name="report_name">orion_invoice_report.tax_invoice</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_invoice_report</field>
+        <field name="py3o_template_fallback">reports/tax_invoice.odt</field> <!-- New ODT template -->
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

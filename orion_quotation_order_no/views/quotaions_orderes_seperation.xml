@@ -1,0 +1,27 @@
+<odoo>
+
+    <!-- Show original quotation number on tree view -->
+    <record id="view_order_tree_inherit_original_quotation" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit.original.quotation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="original_quotation_name" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Filter quotations for current year -->
+    <!--    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">-->
+    <!--        <field name="domain">[-->
+    <!--            ('original_quotation_name', 'ilike', 'KQ')-->
+    <!--            ]-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="domain" eval="[]"/>
+    </record>
+
+</odoo>
+

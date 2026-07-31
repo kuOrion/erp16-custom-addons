@@ -1,0 +1,35 @@
+<odoo>
+    <record id="view_fgtostock_report_form" model="ir.ui.view">
+        <field name="name">view.fgtostock_report.form</field>
+        <field name="model">fgtostock.report</field>
+        <field name="arch" type="xml">
+            <form string="FG to Stock Report">
+                <group>
+                    <separator string="Timeline"/>
+                    <group>
+                        <field name="from_date" required="1"/>
+                        <field name="to_date" required="1"/>
+                    </group>
+                    <separator/>
+                    <footer>
+                        <button string="Create Report" type="object" name="create_fgtostock_report"
+                                class="oe_highlight"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fg_to_stock_report" model="ir.actions.act_window">
+        <field name="name">FG to Stock Report</field>
+        <field name="res_model">fgtostock.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_fgtostock_report_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_fgtostock_report" name="FG to Stock Report"
+              parent="stock.menu_stock_warehouse_mgmt"
+              action="action_fg_to_stock_report" sequence="14"/>
+</odoo>

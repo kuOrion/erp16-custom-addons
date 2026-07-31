@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="delivery_challan_report" model="ir.actions.report">
+        <field name="name">Delivery Challan</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">stock.picking</field>
+        <field name="report_name">orion_delivery_challan_report.delivery_challan</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_delivery_challan_report</field>
+        <field name="py3o_template_fallback">reports/delivery_challan.odt</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

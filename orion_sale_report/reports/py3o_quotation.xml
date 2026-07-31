@@ -1,0 +1,54 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--<odoo>-->
+<!--    &lt;!&ndash; Report Definition &ndash;&gt;-->
+<!--    <record id="orion_reports.report_sale_order" model="ir.actions.report">-->
+<!--        <field name="name">Orion Quotation Report</field>-->
+<!--        <field name="type">ir.actions.report</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="report_name">orion_reports.report_sale_order</field>  &lt;!&ndash; Report Template &ndash;&gt;-->
+<!--        <field name="report_type">py3o</field>-->
+<!--        <field name="py3o_filetype">odt</field>-->
+<!--        <field name="module">orion_reports</field>-->
+<!--        <field name="py3o_template_fallback">repo.odt</field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Print Action to trigger the report &ndash;&gt;-->
+<!--    <record id="action_generate_py3o_report_action" model="ir.actions.server">-->
+<!--        <field name="name">Generate Py3O Quotation Report</field>-->
+<!--        <field name="model_id" ref="sale.model_sale_order"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--            action = model.action_generate_py3o_report()-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->
+
+<odoo>
+    <!-- Report Definition -->
+    <record id="report_orion_sale_order" model="ir.actions.report">
+        <field name="name">Orion Domestic Quotation</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">sale.order</field>
+        <field name="report_name">orion_sale_report.report_sale_order</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_sale_report</field>
+        <field name="py3o_template_fallback">reports/orion_sales_quotation_report.odt</field>  <!-- Ensure correct path here -->
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <!-- Print Action to trigger the report -->
+    <record id="action_generate_py3o_report_action" model="ir.actions.server">
+        <field name="name">Generate Py3O Quotation Report</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_generate_py3o_report()</field>
+    </record>
+</odoo>
+
+

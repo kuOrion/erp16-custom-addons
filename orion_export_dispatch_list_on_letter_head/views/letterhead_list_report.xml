@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Invoice Report -->
+    <record id="action_export_list_report_on_letter_head_invoice_py3o" model="ir.actions.report">
+        <field name="name">ELD on Letterhead </field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">account.move</field>
+        <field name="report_name">orion_export_dispatch_list_on_letter_head.export_letter_head</field>
+        <field name="report_type">py3o</field>
+        <field name="py3o_filetype">odt</field>
+        <field name="module">orion_export_dispatch_list_on_letter_head</field>
+        <field name="py3o_template_fallback">reports/export_letter_head.odt</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

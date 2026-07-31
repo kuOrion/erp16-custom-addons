@@ -1,0 +1,238 @@
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash; Custom Form View for Sale Order Line &ndash;&gt;-->
+<!--        <record id="view_order_line_form_custom" model="ir.ui.view">-->
+<!--            <field name="name">sale.order.line.form.custom</field>-->
+<!--            <field name="model">sale.order.line</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Sales Order Line">-->
+<!--                    <sheet>-->
+<!--                        &lt;!&ndash;                        <group string="Additional Specifications">&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            <field name="internal_reference"/>&ndash;&gt;-->
+<!--                        <group string="Additional Specifications">-->
+<!--                            <field name="internal_reference"/>  &lt;!&ndash; readonly since it's computed &ndash;&gt;-->
+
+
+<!--                            <field name="product_specifications"/>-->
+<!--                            <field name="tag_material_code"/>-->
+<!--                            <field name="schedule_number"/>-->
+<!--                            <field name="has_schedule"/>-->
+<!--                            <field name="schedule_quantity"-->
+<!--                                   attrs="{'invisible': [('has_schedule', '=', False)], 'required': [('has_schedule', '=', True)]}"/>-->
+<!--                            <field name="schedule_date"-->
+<!--                                   attrs="{'invisible': [('has_schedule', '=', False)], 'required': [('has_schedule', '=', True)]}"/>-->
+<!--                        </group>-->
+<!--                        <group string="Deviations">-->
+<!--                            <field name="has_deviation"/>-->
+<!--                            <field name="your_spec_deviation"-->
+<!--                                   attrs="{'invisible': [('has_deviation', '=', False)], 'required': [('has_deviation', '=', True)]}"/>-->
+<!--                            <field name="our_spec_deviation"-->
+<!--                                   attrs="{'invisible': [('has_deviation', '=', False)], 'required': [('has_deviation', '=', True)]}"/>-->
+<!--                            <field name="remark_deviation" attrs="{'invisible': [('has_deviation', '=', False)]}"/>-->
+<!--                        </group>-->
+<!--                        <group string="Accessories">-->
+<!--                            <field name="has_accessories"/>-->
+<!--                            <field name="accessory"-->
+<!--                                   attrs="{'invisible': [('has_accessories', '=', False)], 'required': [('has_accessories', '=', True)]}"/>-->
+<!--                            <field name="accessory_quantity"-->
+<!--                                   attrs="{'invisible': [('has_accessories', '=', False)], 'required': [('has_accessories', '=', True)]}"/>-->
+<!--                            <field name="accessory_rate"-->
+<!--                                   attrs="{'invisible': [('has_accessories', '=', False)], 'required': [('has_accessories', '=', True)]}"/>-->
+<!--                        </group>-->
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Action to open the custom form view &ndash;&gt;-->
+<!--        <record id="action_open_order_line_form" model="ir.actions.act_window">-->
+<!--            <field name="name">Order Line Details</field>-->
+<!--            <field name="res_model">sale.order.line</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="view_id" ref="view_order_line_form_custom"/>-->
+<!--            <field name="target">new</field>-->
+<!--            <field name="context">{}</field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Inherit Sale Order Form to add a button in order lines &ndash;&gt;-->
+<!--        <record id="view_order_form_inherit" model="ir.ui.view">-->
+<!--            <field name="name">sale.order.form.inherit</field>-->
+<!--            <field name="model">sale.order</field>-->
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="after">-->
+<!--                    <button name="action_open_line_details"-->
+<!--                            type="object"-->
+<!--                            string="Additional Details"-->
+<!--                            class="btn-link"-->
+<!--                            icon="fa-pencil"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->
+
+
+<!--<odoo>-->
+<!--    <data>-->
+<!--        &lt;!&ndash; Custom Form View for Sale Order Line &ndash;&gt;-->
+<!--        <record id="view_order_line_form_custom" model="ir.ui.view">-->
+<!--            <field name="name">sale.order.line.form.custom</field>-->
+<!--            <field name="model">sale.order.line</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Sales Order Line">-->
+<!--                    <sheet>-->
+<!--                        <group string="Additional Specifications">-->
+<!--                            <field name="internal_reference"/>-->
+<!--                            <field name="product_specifications"/>-->
+<!--                            <field name="tag_material_code"/>-->
+<!--                            <field name="schedule_number"/>-->
+<!--                            <field name="has_schedule"/>-->
+<!--                        </group>-->
+
+<!--                        <group string="Schedules" attrs="{'invisible': [('has_schedule', '=', False)]}">-->
+<!--                            <field name="schedule_ids">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="schedule_quantity"/>-->
+<!--                                    <field name="schedule_date"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </group>-->
+
+<!--                        <group string="Deviations">-->
+<!--                            <field name="has_deviation"/>-->
+<!--                            <field name="your_spec_deviation"-->
+<!--                                   attrs="{'invisible': [('has_deviation', '=', False)], 'required': [('has_deviation', '=', True)]}"/>-->
+<!--                            <field name="our_spec_deviation"-->
+<!--                                   attrs="{'invisible': [('has_deviation', '=', False)], 'required': [('has_deviation', '=', True)]}"/>-->
+<!--                            <field name="remark_deviation" attrs="{'invisible': [('has_deviation', '=', False)]}"/>-->
+<!--                        </group>-->
+
+<!--                        <group string="Accessories">-->
+<!--                            <field name="has_accessories"/>-->
+<!--                            <field name="accessory"-->
+<!--                                   attrs="{'invisible': [('has_accessories', '=', False)], 'required': [('has_accessories', '=', True)]}"/>-->
+<!--                            <field name="accessory_quantity"-->
+<!--                                   attrs="{'invisible': [('has_accessories', '=', False)], 'required': [('has_accessories', '=', True)]}"/>-->
+<!--                            <field name="accessory_rate"-->
+<!--                                   attrs="{'invisible': [('has_accessories', '=', False)], 'required': [('has_accessories', '=', True)]}"/>-->
+<!--                        </group>-->
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Action to open the custom form view &ndash;&gt;-->
+<!--        <record id="action_open_order_line_form" model="ir.actions.act_window">-->
+<!--            <field name="name">Order Line Details</field>-->
+<!--            <field name="res_model">sale.order.line</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="view_id" ref="view_order_line_form_custom"/>-->
+<!--            <field name="target">new</field>-->
+<!--            <field name="context">{}</field>-->
+<!--        </record>-->
+
+<!--        &lt;!&ndash; Inherit Sale Order Form to add a button in order lines &ndash;&gt;-->
+<!--        <record id="view_order_form_inherit" model="ir.ui.view">-->
+<!--            <field name="name">sale.order.form.inherit</field>-->
+<!--            <field name="model">sale.order</field>-->
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="after">-->
+<!--                    <button name="action_open_line_details"-->
+<!--                            type="object"-->
+<!--                            string="Additional Details"-->
+<!--                            class="btn-link"-->
+<!--                            icon="fa-pencil"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->
+
+
+<odoo>
+    <data>
+        <!-- Custom Form View for Sale Order Line -->
+        <record id="view_order_line_form_custom" model="ir.ui.view">
+            <field name="name">sale.order.line.form.custom</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <form string="Sales Order Line">
+                    <sheet>
+                        <!-- Additional Specifications -->
+                        <group string="Additional Specifications">
+                            <field name="internal_reference"/>
+                            <field name="product_specifications"/>
+                            <field name="tag_material_code"/>
+                            <field name="schedule_number"/>
+                            <field name="has_schedule"/>
+                        </group>
+
+                        <!-- Schedules -->
+                        <group string="Schedules" attrs="{'invisible': [('has_schedule', '=', False)]}">
+                            <field name="schedule_ids">
+                                <tree editable="bottom">
+                                    <field name="schedule_quantity"/>
+                                    <field name="schedule_date"/>
+                                </tree>
+                            </field>
+                        </group>
+
+                        <!-- Deviation Section -->
+                        <group string="Deviation">
+                            <field name="devyn"/>
+                            <field name="deviation_line"
+                                   attrs="{'invisible': [('devyn', '=', False)], 'readonly': [('devyn', '=', False)]}">
+                                <tree editable="bottom">
+                                    <field name="devyrspec"/>
+                                    <field name="devourspec"/>
+                                    <field name="devremark"/>
+                                </tree>
+                            </field>
+                        </group>
+
+                        <!-- Accessories Section -->
+                        <group string="Accessories">
+                            <field name="accessory_yn"/>
+                            <field name="accessories_line"
+                                   attrs="{'invisible': [('accessory_yn', '=', False)], 'readonly': [('accessory_yn', '=', False)]}">
+                                <tree editable="bottom">
+                                    <field name="accessory_id"/>
+                                    <field name="accessory_rate"/>
+                                    <field name="accessory_qty"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action to open the custom form view -->
+        <record id="action_open_order_line_form" model="ir.actions.act_window">
+            <field name="name">Order Line Details</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_order_line_form_custom"/>
+            <field name="target">new</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- Inherit Sale Order Form to add a button in order lines -->
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="after">
+                    <button name="action_open_line_details"
+                            type="object"
+                            string="Additional Details"
+                            class="btn-link"
+                            icon="fa-pencil"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

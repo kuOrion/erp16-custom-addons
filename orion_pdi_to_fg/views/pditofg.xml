@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Report Action -->
+
+    <!-- Form View -->
+    <record id="view_pditofg_report_form" model="ir.ui.view">
+        <field name="name">view.pditofg.report.form</field>
+        <field name="model">pditofg.report</field>
+        <field name="arch" type="xml">
+            <form string="PDI to FG Report">
+                <group col="2" fill="0" height="500">
+                    <separator string="Timeline" colspan="2"/>
+                    <group>
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                    </group>
+                    <separator colspan="2"/>
+                    <group>
+                        <footer>
+                            <button name="create_pditofg_report" type="object" string="Create Report"
+                                    class="btn-primary"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_pdi_to_fg_report" model="ir.actions.act_window">
+        <field name="name">PDI TO FG Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pditofg.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_pditofg_report" name="PDI to FG Report"
+              parent="stock.menu_stock_warehouse_mgmt"
+              action="action_pdi_to_fg_report"
+              sequence="14"
+              groups="stock.group_stock_manager,stock.group_stock_user"/>
+</odoo>

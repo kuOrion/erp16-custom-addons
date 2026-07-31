@@ -1,0 +1,107 @@
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <menuitem id="base_report_parent" name="MIS-Reports"/>-->
+
+<!--        <record id="view_pending_oa_tree" model="ir.ui.view">-->
+<!--            <field name="name">view.pending.oa.tree</field>-->
+<!--            <field name="model">sale.order</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Sales Orders" decoration-muted="state=='cancel'">-->
+<!--                    <field name="name" string="Order Number"/>-->
+<!--                    <field name="date_order"/>-->
+<!--                    <field name="state"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_salewise_form" model="ir.ui.view">-->
+<!--            <field name="name">view.salewise.form</field>-->
+<!--            <field name="model">orion_mis_reports.salewise</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Pending Report">-->
+<!--                    <group col="2">-->
+<!--                        <separator string="Timeline" colspan="2"/>-->
+<!--                        <group>-->
+<!--                            <field name="from_date" required="1"/>-->
+<!--                            <field name="to_date" required="1"/>-->
+<!--                            <field name="partner_id"/>-->
+<!--                            <field name="product_id"/>-->
+<!--                        </group>-->
+<!--                        <separator colspan="2"/>-->
+<!--                        <footer>-->
+<!--                            <button string="Create Report" type="object" name="create_salewise_report"-->
+<!--                                    class="btn-primary"/>-->
+<!--                            <button string="Cancel" special="cancel" class="btn-secondary"/>-->
+<!--                        </footer>-->
+<!--                    </group>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record model="ir.actions.act_window" id="action_salewise">-->
+<!--            <field name="name">Pending Report</field>-->
+<!--            <field name="res_model">orion_mis_reports.salewise</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
+
+<!--        <menuitem id="report_salewise" name="Reports" parent="base_report_parent"/>-->
+<!--        <menuitem id="menu_report_salewise" name="Pending Report" parent="report_salewise" action="action_salewise"/>-->
+<!--    </data>-->
+<!--</odoo>-->
+
+
+<odoo>
+    <data>
+        <!-- Reference existing MIS-Reports menu -->
+        <!-- Do NOT redefine `menu_mis_reports_root` -->
+
+        <!-- Pending Reports Submenu -->
+        <menuitem id="menu_pending_reports" name="OA Pending Report" parent="orion_mis_reports_base.menu_mis_reports_root"
+                  sequence="2"/>
+
+
+        <!-- Form View for Pending Report -->
+        <record id="view_salewise_form" model="ir.ui.view">
+            <field name="name">view.salewise.form</field>
+            <field name="model">orion_mis_reports.salewise</field>
+            <field name="arch" type="xml">
+                <form string="OA Pending Report">
+                    <group col="2">
+                        <separator string="Timeline" colspan="2"/>
+                        <group>
+                            <field name="from_date" required="1"/>
+                            <field name="to_date" required="1"/>
+                            <field name="partner_id"/>
+                            <field name="product_id"/>
+                            <field name="sale_type" widget="radio"/>
+
+                        </group>
+                        <separator colspan="2"/>
+                        <footer>
+                            <button string="Create Report" type="object" name="create_salewise_report"
+                                    class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for Pending Report -->
+        <record id="action_salewise" model="ir.actions.act_window">
+            <field name="name">Pending Report</field>
+            <field name="res_model">orion_mis_reports.salewise</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Pending Report under Reports Menu -->
+        <menuitem
+                id="menu_report_salewise"
+                name="OA Pending Report"
+                parent="menu_pending_reports"
+                action="action_salewise"
+                sequence="1"/>
+    </data>
+</odoo>

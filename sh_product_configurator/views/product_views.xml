@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_normal_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.product.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="before">
+                <group>
+                    <group>
+                        <field name="show_product_template_field" invisible="1"/>
+                        <field name="sh_is_record_saved" invisible="1"/>
+                        <field name="product_template_id" widget="sol_product_many2one" domain="[('id', '!=', product_tmpl_id)]" attrs="{'invisible': ['|',('id','=',False),('show_product_template_field', '=', False)]}"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//div[@name='pricing']" position="after">
+                <field name="product_custom_attribute_value_ids" invisible="1"/>
+                <field name="product_no_variant_attribute_value_ids" invisible="1"/>
+                <field name="product_template_attribute_value_ids" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="sh_specification" string="Specification">
+                    <div class="row">
+                        <div class="col-5">
+                            <field name="sh_spec_line_ids" nolabel="1" readonly="1">
+                                <tree>
+                                    <field name="sh_name"/>                                                                                                                                  │
+                                    <field name="sh_value"/>    
+                                </tree>
+                            </field>
+                        </div>
+                        <div class="col-1">
+                            <!-- Spacer column -->
+                        </div>
+                        <div class="col-6">
+                            <field name="sh_extra_spec_line_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="sh_name"/>
+                                    <field name="sh_value"/>
+                                </tree>
+                            </field>
+                        </div>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
