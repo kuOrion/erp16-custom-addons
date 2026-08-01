@@ -309,16 +309,12 @@ class MrpProduction(models.Model):
         apply_serial.generate_serial_numbers_production()
         apply_serial.apply()
         if self.sh_produce_qty > 0 and self.procurement_group_id:
-            done_production = 1
             mrp_production_ids = self.procurement_group_id.mrp_production_ids.filtered(
                 lambda production: production.state not in  ['partially_done','done']
             )
-            for production in mrp_production_ids:
-               
-
-                if done_production <= self.sh_produce_qty:
-                    production.button_mark_done()
-                    done_production += 1
+            to_mark_done = mrp_production_ids[:int(self.sh_produce_qty)]
+            if to_mark_done:
+                to_mark_done.button_mark_done()
         # else:
         #     if self.sh_produce_qty > 0 and self.procurement_group_id:
         #         to_close_productions = self.procurement_group_id.mrp_production_ids.filtered(
