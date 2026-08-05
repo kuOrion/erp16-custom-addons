@@ -248,4 +248,4 @@ class HrRuleInput(models.Model):
     code = fields.Char(required=True, help="The code that can be used in the salary rules")
     input_id = fields.Many2one('hr.salary.rule', string='Salary Rule Input', required=True)
 # test edit for Stop auto-commit, 1785953861
-# real test change for Send for Review, 1785953879
+# TEAMMATE EDIT -- this line changed by someone else
