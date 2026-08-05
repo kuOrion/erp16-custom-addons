@@ -6,3 +6,4 @@ while it's being built and tested. Not a module (no `__manifest__.py`),
 so Odoo's addons scanner ignores it entirely -- harmless by construction.
 
 Safe to delete once `deploy.sh` is fully built and proven.
+Second marker line, added 2026-08-05T15:42:03Z for full-flow deploy.sh dry run.
