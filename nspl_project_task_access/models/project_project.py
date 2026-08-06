@@ -40,6 +40,9 @@ class ProjectProject(models.Model):
         Updated the logic so that users with Project Administrator rights
         are also allowed to add/update 'project_access_user_ids'.
         """
+        # Cache these refs once per call rather than re-resolving inside
+        # the loop below -- negligible on small recordsets but avoids
+        # repeated XML-ID lookups on a bulk write.
         admin_user = self.env.ref("base.user_admin")
         project_admin_group = self.env.ref("project.group_project_manager")
 
