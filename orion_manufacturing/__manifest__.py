@@ -11,6 +11,7 @@
     'data': [
         'views/mrp_production.xml',
         'views/BOM_internal_ref.xml',
+        'views/mrp_production_component_avail.xml',
         # 'wizard/Product_Selection.xml',
     ],
     'license': 'LGPL-3',

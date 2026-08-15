@@ -7,7 +7,7 @@
         <field name="model">sale.order</field>
         <field name="report_name">orion_domestic_proforma.report_proforma</field>
         <field name="report_type">py3o</field>
-        <field name="py3o_filetype">odt</field>
+        <field name="py3o_filetype">pdf</field>
         <field name="module">orion_domestic_proforma</field>
         <field name="py3o_template_fallback">reports/orion_proforma_report.odt</field>
         <field name="binding_model_id" ref="sale.model_sale_order"/>

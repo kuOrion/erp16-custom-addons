@@ -1,0 +1,19 @@
+<odoo>
+    <record id="mrp_production_form_inherit_preview_button" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.preview.button</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+
+            <!-- Add new button next to existing -->
+            <xpath expr="//button[@name='action_assign']" position="after">
+                <button name="action_check_availability_preview"
+                        type="object"
+                        string="Check Availability (Preview)"
+                        class="btn-primary"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

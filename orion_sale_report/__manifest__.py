@@ -14,9 +14,6 @@
 
         'data/ir_sequence.xml',
     ],
-    'external_dependencies': {
-        'python': ['py3o.template', 'py3o.fusion'],
-    },
     'license': 'LGPL-3',
     'sequence': -100,
     'installable': True,

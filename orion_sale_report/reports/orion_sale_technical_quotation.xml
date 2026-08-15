@@ -20,7 +20,7 @@
             <field name="model">sale.order</field>
             <field name="report_name">orion_sale_report.report_sale_order</field>
             <field name="report_type">py3o</field>
-            <field name="py3o_filetype">odt</field>
+            <field name="py3o_filetype">pdf</field>
             <field name="module">orion_sale_report</field>
             <field name="py3o_template_fallback">reports/orion_sale_technical_quotation.odt</field>
 
@@ -37,7 +37,7 @@
             <field name="model">sale.order</field>
             <field name="report_name">orion_sale_report.report_sale_summary</field>
             <field name="report_type">py3o</field>
-            <field name="py3o_filetype">odt</field>
+            <field name="py3o_filetype">pdf</field>
             <field name="module">orion_sale_report</field>
             <field name="py3o_template_fallback">reports/orion_sales_quotation_report.odt</field>
             <field name="binding_model_id" ref="sale.model_sale_order"/>
@@ -53,7 +53,7 @@
             <field name="model">sale.order</field>
             <field name="report_name">orion_sale_report.report_sale_export</field>
             <field name="report_type">py3o</field>
-            <field name="py3o_filetype">odt</field>
+            <field name="py3o_filetype">pdf</field>
             <field name="module">orion_sale_report</field>
             <field name="py3o_template_fallback">reports/orion_export_quotation.odt</field>
             <field name="binding_model_id" ref="sale.model_sale_order"/>
@@ -69,7 +69,7 @@
             <field name="model">sale.order</field>
             <field name="report_name">orion_sale_report.report_sale_acknowledgment</field>
             <field name="report_type">py3o</field>
-            <field name="py3o_filetype">odt</field>
+            <field name="py3o_filetype">pdf</field>
             <field name="module">orion_sale_report</field>
             <field name="py3o_template_fallback">reports/orion_acknowledgment_report.odt</field>
             <field name="binding_model_id" ref="sale.model_sale_order"/>
@@ -102,7 +102,7 @@
             <field name="model">sale.order</field>
             <field name="report_name">orion_sale_report.report_oguage</field>
             <field name="report_type">py3o</field>
-            <field name="py3o_filetype">odt</field>
+            <field name="py3o_filetype">pdf</field>
             <field name="module">orion_sale_report</field>
             <field name="py3o_template_fallback">reports/orion_oguage_quotation_report.odt</field>
             <field name="binding_model_id" ref="sale.model_sale_order"/>
