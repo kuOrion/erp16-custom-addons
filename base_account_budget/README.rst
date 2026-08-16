@@ -41,5 +41,4 @@ Further information
 ===================
 HTML Description: `<static/description
 /index.html>`__
-test
 
