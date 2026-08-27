@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+sh_mo_auto_serial_no.access_sh_finished_product,access_sh_finished_product,sh_mo_auto_serial_no.model_sh_finished_product,base.group_user,1,1,1,1
+sh_mo_auto_serial_no.access_sh_serial_reassign_log,access_sh_serial_reassign_log,sh_mo_auto_serial_no.model_sh_serial_reassign_log,base.group_system,1,0,0,0

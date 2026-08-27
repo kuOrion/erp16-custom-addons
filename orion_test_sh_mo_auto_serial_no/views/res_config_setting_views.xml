@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_mo_auto_serial_no_res_config_settings_view_form_inherited" model="ir.ui.view">
+        <field name="name">sh.mrp.res.config.settings.inherit.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="mrp.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='mrp']" position="inside"> 
+                <h2>MO Assign Serial No.</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-lg-6 col-12 o_setting_box" id="sh_apply_serial_number_globally1" >
+                        <p class="h2" >Type 1: Apply Serial Number Globally</p>
+                        <div class='mt-3'>
+                            <label for="sh_number_of_degit_type1"/>
+                            <field name="sh_number_of_degit_type1" class='ms-3'/>
+                        </div>
+                        <div>
+                            <label for="sh_prefix_type1"/>
+                            <field name="sh_prefix_type1" class='ms-3'/>
+                        </div>
+                        <div >
+                             <label for="sh_confirirmation_message_type1"/>
+                            <field name="sh_confirirmation_message_type1" class='ms-3'/>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 o_setting_box" id="sh_apply_serial_number_globally2">
+                        <p class="h2">Type 2: Apply Serial Number Globally</p>
+                        <div class='mt-3'>
+                            <label for="sh_number_of_degit_type2"/>
+                            <field name="sh_number_of_degit_type2" class='ms-3'/>
+                        </div>
+                        <div>
+                            <label for="sh_prefix_type2"/>
+                            <field name="sh_prefix_type2" class='ms-3'/>
+                        </div>
+                        <div >
+                            <label for="sh_confirirmation_message_type2"/>
+                            <field name="sh_confirirmation_message_type2" class='ms-3'/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

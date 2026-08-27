@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_mo_auto_serial_no_mrp_production_form_view_inherited" model="ir.ui.view">
+        <field name="name">sh.mrp.production.inherit.view.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="sh_auto_assign_serial_no" invisible='1'/>
+                <field name="sh_serial_no_type"  attrs="{'required': [('sh_auto_assign_serial_no', '=', True)]}"/>
+                <field name="sh_produce_qty" attrs="{'required': [('sh_auto_assign_serial_no', '=', True)]}"/>
+                <field name="sh_main_mo" invisible='1'/>
+                <field name="sh_serial_btn_mo" invisible='1'/>
+                <field name="sh_total_qty" invisible='1'/>
+                <field name="sh_is_serial_btn_invisible" invisible='1'/>
+            </xpath>
+            <!-- Lot/Serial Number: never editable on Done, and never manually
+                 cleared/changed once a serial is set. Users must use
+                 Release Serial No (which properly unlinks stock + Finished
+                 Product). Assign / Reassign still write via Python. -->
+            <xpath expr="//field[@name='lot_producing_id']" position="attributes">
+                <attribute name="attrs">{'invisible': [('product_tracking', 'in', ('none', False))], 'readonly': ['|', ('state', 'in', ('done', 'cancel')), ('lot_producing_id', '!=', False)]}</attribute>
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <!-- Hide standard "+" serial create when this module auto-assigns;
+                 that path bypasses Type1/Type2 prefix logic. -->
+            <xpath expr="//button[@name='action_generate_serial']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', '|', ('product_tracking', 'in', ('none', False)), ('lot_producing_id', '!=', False), ('sh_auto_assign_serial_no', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name="action_assign_serial_number"  string="Assign Serial No" attrs="{'invisible': ['|','|','|',('sh_serial_btn_mo', '==', False),('state', '==', 'draft'),('sh_is_serial_btn_invisible', '==', True),('lot_producing_id', '!=', False)]}" type="object" class="oe_highlight"/>
+                <button name="action_release_serial_number" string="Release Serial No" attrs="{'invisible': [('lot_producing_id', '=', False)]}" type="object" groups="base.group_system"/>
+                <button name="action_reassign_serial_number" string="Reassign Serial No" attrs="{'invisible': ['|',('lot_producing_id', '!=', False),('state', '==', 'draft')]}" type="object" groups="base.group_system"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Finished Product" name="sh_finished_product">
+                    <field name="sh_finished_product_ids" >
+                        <tree create="false" delete="false" edit="false">
+                            <field name="product_id" />
+                            <field name="sh_product_qty" />
+                            <button name="sh_show_details_action" type="object" title="Show Details" icon="fa-list"/>
+                        </tree>
+
+                    </field>
+                </page>
+                <page string="Serial No History" name="sh_serial_history" groups="base.group_system">
+                    <field name="sh_serial_history_ids" nolabel="1">
+                        <tree create="false" delete="false" edit="false">
+                            <field name="lot_id"/>
+                            <field name="action"/>
+                            <field name="from_production_id"/>
+                            <field name="to_production_id"/>
+                            <field name="user_id"/>
+                            <field name="create_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="sh_mo_auto_serial_no_mrp_view_mrp_production_filter_inherited" model="ir.ui.view">
+        <field name="name">sh.mrp.production.inherit.view.search</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='activities_exception']" position="after">
+                <filter string="Main MO" name="sh_main_mo"
+                domain="[('sh_main_mo', '=', True)]"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="sh_mo_auto_serial_no_action_mass_release_serial" model="ir.actions.server">
+        <field name="name">Release Serial No</field>
+        <field name="model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
+        <field name="code">records.action_mass_release_serial_number()</field>
+    </record>
+
+    <record id="sh_mo_auto_serial_no_action_mass_reassign_serial" model="ir.actions.server">
+        <field name="name">Reassign Serial No</field>
+        <field name="model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
+        <field name="code">records.action_mass_reassign_serial_number()</field>
+    </record>
+
+    <record id="mrp.mrp_production_action" model="ir.actions.act_window">
+        <field name="name">Manufacturing Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.production</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="context">{'search_default_todo': True, 'default_company_id': allowed_company_ids[0],'search_default_sh_main_mo':True}</field>
+        <field name="domain">[('picking_type_id.active', '=', True)]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            No manufacturing order found. Let's create one.
+          </p><p>
+            Consume <a name="%(product.product_template_action)d" type='action' tabindex="-1">components</a> and build finished products using <a name="%(mrp.mrp_bom_form_action)d" type='action' tabindex="-1">bills of materials</a>
+          </p>
+        </field>
+    </record>
+
+</odoo>

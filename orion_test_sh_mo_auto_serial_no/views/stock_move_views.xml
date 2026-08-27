@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_mo_auto_serial_no_view_stock_move_operations_inherited" model="ir.ui.view">
+        <field name="name">sh.stock.move.inherit.view.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_stock_move_operations" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='next_serial']" position="before">
+                <!-- Sale Delivery must stay standard Odoo delivery. Start/End
+                     Serial + Update are only for Internal Transfers (same rule
+                     as MO / Internal Picking on the picking form). -->
+                <field name="sh_picking_type_code" invisible="1"/>
+                <field name="start_lot_id"
+                         domain="[('id', 'in', mo_lot_ids)]"
+                         attrs="{'invisible': [('sh_picking_type_code', '!=', 'internal')]}"/>
+                <field name="end_lot_id"
+                         domain="[('id', 'in', mo_lot_ids)]"
+                         attrs="{'invisible': [('sh_picking_type_code', '!=', 'internal')]}"/>
+                <field name="mo_lot_ids" widget="many2many_tags" invisible="1"/>
+                <button name="sh_action_update_move_line" string="Update" type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': [('sh_picking_type_code', '!=', 'internal')]}"/>
+                <!-- <field name="sh_source_mo_id" force_save='1' domain="[('id', 'in', sh_source_mo_ids)]" attrs="{'readonly': ['|', ('state', '=', 'cancel'), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}"/> 
+                <field name="sh_source_mo_ids" widget='many2many_tags' 
+                invisible="1"
+                />
+                <field name="sh_internal_picking_id" domain="[('id', 'in', sh_internal_picking_ids)]" attrs="{'readonly': ['|', ('state', '=', 'cancel'), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}"/> 
+                <field name="sh_internal_picking_ids" widget='many2many_tags' 
+                invisible="1"
+                />
+                <field name="sh_select_all_move_line" attrs="{'readonly': ['|', ('state', '=', 'cancel'), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}"/> -->
+            </xpath>
+        
+        </field>
+    </record>
+    <record id="sh_mo_auto_serial_no_view_view_stock_move_line_operation_tree_inherited" model="ir.ui.view">
+        <field name="name">sh.stock.move.line.inherit.view.form</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree" />
+        <field name="arch" type="xml">
+            <!-- Do not force_save reserved_uom_qty on Sale Delivery (or any
+                 operation tree). That overwrote reserved qty to 0 and left
+                 serial lines blank. Keep the inherit so the upgrade replaces
+                 the old force_save=1 view in the database. -->
+            <xpath expr="//field[@name='reserved_uom_qty']" position="attributes">
+                <attribute name="force_save">0</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
