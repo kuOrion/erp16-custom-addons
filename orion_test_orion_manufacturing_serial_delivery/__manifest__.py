@@ -6,7 +6,7 @@
     'depends': ['sale',
                 'stock',
                 'mrp',
-                'sh_mo_auto_serial_no'
+                'orion_test_sh_mo_auto_serial_no'
                 ],
     'data': [
         # 'views/auto_delivery_serial.xml',
