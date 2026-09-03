@@ -8,9 +8,9 @@
             <xpath expr="//header" position="inside">
                 <button name="%(report_orion_purchase_order)d"
                         type="action"
-                        string="Orion Purchase Quotation"
+                        string="Orion Purchase order Report"
                         class="btn btn-secondary"
-                        context="{'py3o_mimetype': 'odt'}"
+                        context="{'py3o_mimetype': 'pdf'}"
                         groups="purchase.group_purchase_user"/>
             </xpath>
         </field>
